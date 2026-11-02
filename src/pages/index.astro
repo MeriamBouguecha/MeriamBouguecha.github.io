@@ -1,16 +1,999 @@
 ---
+type Project = {
+  title: string;
+  category: string;
+  period?: string;
+  description: string;
+  result?: string;
+  tags: string[];
+  video?: string;
+  link?: { href: string; label: string };
+  color: "peach" | "blue" | "lavender";
+};
+
+/* Set this to your CV file (put the PDF in /public) and a "Download CV" button appears.
+   Example: "/Meriam_Bouguecha_CV.pdf" */
+const cvUrl = "";
+
+/* Set this to a photo of you (e.g. "/media/photos/me.jpg") and it appears in About. */
+const aboutPhoto = "";
+
+const emailMain = "meriam.bouguecha@epfl.ch";
+const emailSecondary = "bougachamariem@gmail.com";
+
+/* ---------- Featured: current internship ---------- */
+const featured = {
+  title: "Dexterous Robotic Hand Control",
+  category: "Robotics R&D intern, Sonceboz",
+  period: "Sep 2026 – present",
+  intro:
+    "Leading a state-of-the-art review and benchmark of control and learning methods for dexterous manipulation on a five-finger robotic hand: classical control, MPC, imitation learning, RL, ACT and diffusion-based policies.",
+  highlights: [
+    "Evaluating hand platforms, MuJoCo-based simulation resources and software stacks",
+    "Defining benchmark tasks, success metrics and repeatable test conditions",
+    "Assessing how tactile, proprioceptive and visual feedback can support manipulation policies",
+  ],
+  tags: ["MuJoCo", "MPC", "RL", "Imitation Learning", "ACT", "Diffusion Policies", "Python"],
+};
+
+/* ---------- 01 · Robotics & Engineering ---------- */
+const roboticsProjects: Project[] = [
+  {
+    title: "Upper-Limb Exoskeleton",
+    category: "Rehabilitation robotics, REHAssist Lab",
+    period: "2026",
+    description:
+      "Real-time sensing-to-actuation pipeline on a BeagleBone Black: VQF-filtered IMU data and CAN control of three AK60-6 actuators. A four-state intention-detection controller with gravity compensation, using the real-time-compatible classifier picked after comparing KNN, PCA/SVD and azimuth-based approaches.",
+    result: "Tracking errors of 3.1°, 4.8° and 7.0° · 17.3 ms control loop",
+    tags: ["Python", "BeagleBone", "IMU", "CAN", "Control"],
+    video: "/media/exoskeleton/mirroring_test.mp4",
+    color: "peach",
+  },
+  {
+    title: "Haptic Teleoperation",
+    category: "Embedded robotics",
+    period: "2025",
+    description:
+      "Real-time embedded software on STM32 for bilateral haptic teleoperation: encoder, Hall-effect and current sensing, UART communication and PD force feedback, tested for latency, tracking and reliability.",
+    tags: ["STM32", "C", "UART", "Haptics", "PD Control"],
+    video: "/media/haptics/haptics_teleop.mp4",
+    color: "blue",
+  },
+  {
+    title: "Vision-Guided Manipulation",
+    category: "Robot manipulation",
+    description:
+      "Camera-based perception connected to robotic pick-and-place: camera calibration, object detection and manipulation on a physical robot arm.",
+    tags: ["Python", "Computer Vision", "Manipulation", "Calibration"],
+    video: "/media/manipulation/pick_and_place.mp4",
+    color: "lavender",
+  },
+  {
+    title: "Autonomous Mobile Robot",
+    category: "Perception and navigation",
+    period: "2024",
+    description:
+      "Autonomous maze navigation for a Thymio robot: a Python/OpenCV vision pipeline for perception, combined with obstacle detection, path planning and reactive motor control.",
+    tags: ["Python", "OpenCV", "Path Planning"],
+    color: "blue",
+  },
+  {
+    title: "Coin Detection",
+    category: "Computer vision",
+    description:
+      "Detection and classification of coins in images. A learned model fell short, so I got strong results with careful OpenCV preprocessing, classical classifiers and a lot of experimentation.",
+    tags: ["Python", "OpenCV", "Classifiers", "Image Processing"],
+    color: "lavender",
+  },
+  {
+    title: "Model Predictive Control",
+    category: "Optimal control",
+    description:
+      "Constrained MPC controllers for vehicle lane-changing and speed tracking, including state and disturbance estimation.",
+    tags: ["MATLAB", "MPC", "Optimization"],
+    color: "peach",
+  },
+  {
+    title: "Double SCARA Robot",
+    category: "Robot design and control, UPM Madrid",
+    period: "2022 – 2023",
+    description:
+      "Designed, assembled and controlled a double SCARA arm from scratch in a multidisciplinary team: forward and inverse kinematics, position control, and a custom human–machine interface.",
+    tags: ["MATLAB", "Arduino", "C++", "Kinematics"],
+    color: "blue",
+  },
+  {
+    title: "Xplore Rover Electronics",
+    category: "Electronics, Xplore rover team",
+    period: "2023 – 2024",
+    description:
+      "Designed an IMU PCB in Altium with a CAN transceiver, and handled hardware validation, soldering and debugging for the European Rover Challenge 2024.",
+    tags: ["Altium", "PCB", "CAN", "Sensors"],
+    color: "peach",
+  },
+];
+
+/* ---------- 02 · Biomedical & Data ---------- */
+const biomedicalProjects: Project[] = [
+  {
+    title: "3D Gait Analysis",
+    category: "Human movement analysis, REHAssist Lab",
+    period: "2025",
+    description:
+      "3D movement-analysis pipeline on heterogeneous datasets: preprocessing, temporal feature extraction and joint-motion analysis, with a scoring framework for movement structure, timing and amplitude.",
+    result: "81.7% accuracy, healthy vs post-stroke gait",
+    tags: ["Python", "Feature Extraction", "Classification"],
+    color: "lavender",
+  },
+  {
+    title: "3D Microscopy & Image Analysis",
+    category: "Research assistant, Living Patterns Lab",
+    period: "2024",
+    description:
+      "Processed 3D microscopy data in Python and ImageJ: preprocessing, volumetric analysis, feature extraction and QC workflows. Also contributed to microscope hardware setup, Qt interface updates and documentation.",
+    tags: ["Python", "ImageJ", "Image Processing", "Qt"],
+    color: "peach",
+  },
+  {
+    title: "Biological Data Analysis",
+    category: "Research assistant, LISP lab",
+    period: "Sep 2025 – Apr 2026",
+    description:
+      "Quality control, preprocessing and statistical analysis of large biological datasets in R, with reproducible workflows and structured databases for traceable results.",
+    tags: ["R", "Statistics", "QC", "Reproducibility"],
+    color: "blue",
+  },
+  {
+    title: "Optical Instrumentation",
+    category: "Bioinstrumentation",
+    period: "2024",
+    description:
+      "Built and validated a fluorescence-based optical measurement system for detecting microfluidic droplets: sensors, LabVIEW data acquisition, calibration and signal processing, with a technical report on performance.",
+    tags: ["LabVIEW", "Optics", "DAQ", "Signal Processing", "Calibration"],
+    color: "lavender",
+  },
+  {
+    title: "Neural Signals & Medical Imaging",
+    category: "Signal processing",
+    period: "2025",
+    description:
+      "Python pipeline for preprocessing, quality checks and quantitative analysis of medical imaging data such as CT and MRI, investigating functional brain-activity patterns.",
+    tags: ["Python", "Medical Imaging", "Signal Processing", "QC"],
+    color: "peach",
+  },
+  {
+    title: "Preference-Based Machine Learning",
+    category: "Machine learning",
+    period: "2025",
+    description:
+      "Implemented and compared PPO-based RLHF and DPO in PyTorch and Gym on CartPole and Pendulum, across five preference-dataset sizes (50–5000) and six random seeds.",
+    result: "Found regimes where a learned reward model beats DPO",
+    tags: ["Python", "PyTorch", "RL", "Evaluation"],
+    color: "blue",
+  },
+  {
+    title: "Predicting Movie Ratings",
+    category: "Data analysis, Applied Data Analysis course",
+    period: "2024",
+    description:
+      "Team data story on what shapes IMDb ratings. We merged several datasets, engineered features such as cast diversity and historical proximity, ran ANOVA and Kruskal-Wallis tests, and trained a Random Forest on 58,000+ samples.",
+    result: "76.4% accuracy on unseen data",
+    tags: ["Python", "scikit-learn", "Statistics", "Data Storytelling"],
+    link: { href: "https://doalexis.github.io/majcj2024/", label: "Read the data story ↗" },
+    color: "lavender",
+  },
+];
+
+const sections = [
+  {
+    id: "robotics",
+    number: "01",
+    title: "Robotics & Engineering",
+    subtitle: "Control, perception, embedded systems, simulation, manipulation and autonomous systems.",
+    projects: roboticsProjects,
+    trackLabel: `${roboticsProjects.length} more projects`,
+    featured,
+    note: "Part of this work comes from research and industry projects, so the code stays in private repositories. I’m happy to walk through the details.",
+    variant: "main",
+  },
+  {
+    id: "biomedical",
+    number: "02",
+    title: "Biomedical & Data Projects",
+    subtitle: "Scientific imaging, human movement analysis, biological datasets and machine learning.",
+    projects: biomedicalProjects,
+    trackLabel: `${biomedicalProjects.length} projects`,
+    featured: undefined,
+    note: undefined,
+    variant: "compact",
+  },
+];
+
+const skills = [
+  {
+    title: "Programming & Software",
+    items: ["Python", "C/C++", "MATLAB", "R", "Git", "Linux", "Docker", "Jupyter", "CMake", "Qt"],
+  },
+  {
+    title: "Robotics & Control",
+    items: ["MuJoCo", "Gazebo", "MPC", "PD/PID Control", "Kinematics", "Motion Planning", "ROS 2 · introductory", "Simulation", "Benchmarking"],
+  },
+  {
+    title: "Machine Learning & Vision",
+    items: ["PyTorch", "scikit-learn", "OpenCV", "ImageJ", "Image Processing", "Feature Extraction", "Classification", "RL"],
+  },
+  {
+    title: "Embedded & Hardware",
+    items: ["STM32", "BeagleBone", "Arduino", "CAN", "UART", "I2C", "SPI", "IMU", "Altium", "LabVIEW"],
+  },
+  {
+    title: "Data & Experimentation",
+    items: ["Data Preprocessing", "Statistics", "Sensor Fusion", "Filtering", "Calibration", "Testing", "Quality Control"],
+  },
+];
+
+const education = [
+  ["MSc Robotics, minor in Computational Biology", "EPFL · 2024 – present"],
+  ["BSc Microengineering", "EPFL · 2020 – 2024"],
+  ["Exchange year", "UPM Madrid · 2022 – 2023"],
+];
+
+const languages = [
+  ["Arabic", "Native"],
+  ["French", "Fluent"],
+  ["English", "Fluent"],
+  ["Spanish", "Intermediate"],
+  ["German", "Beginner"],
+];
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Meriam Bouguecha — EPFL Robotics student looking for a master's thesis. Control, perception, embedded systems, manipulation and hands-on engineering projects." />
+    <title>Meriam Bouguecha | Robotics</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;700;800&family=Figtree:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <header class="site-header">
+      <a class="logo" href="#home" aria-label="Meriam Bouguecha, home">MB<span>.</span></a>
+      <nav aria-label="Main navigation">
+        <a href="#robotics">Robotics</a>
+        <a href="#biomedical">Biomedical &amp; Data</a>
+        <a href="#skills">Skills</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section id="home" class="hero">
+        <div class="hero-content">
+          <p class="status"><span class="dot" aria-hidden="true"></span>Looking for a master’s thesis in robotics</p>
+          <h1>
+            <span class="greeting">Hi, I’m Meriam.</span>
+            Curious about how things work. <em>Even more curious about making them work.</em>
+          </h1>
+          <p class="intro">
+            Robotics Master’s student at EPFL, building controllers and systems for
+            machines that work with people, from dexterous hands to exoskeletons.
+            I like to understand the human first, then design the robot around it.
+          </p>
+          <div class="hero-buttons">
+            <a class="button primary" href="#robotics">Explore my work</a>
+            <a class="button secondary" href="#about">A little about me</a>
+            {cvUrl && <a class="button secondary" href={cvUrl} target="_blank" rel="noopener noreferrer">Download CV ↗</a>}
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <img
+            src="/media/photos/linkerbot_coeur.jpg"
+            alt="Human and robotic hands forming a heart shape"
+            fetchpriority="high"
+          />
+          <div class="photo-caption">
+            <span>human × robot interaction</span>
+            <span>♡</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- WORK SECTIONS -->
+      {sections.map((section) => (
+        <section id={section.id} class:list={["section", "work-section", section.variant]}>
+          <div class="section-heading">
+            <p class="section-num">{section.number}</p>
+            <h2>{section.title}</h2>
+            <p class="section-description">{section.subtitle}</p>
+          </div>
+
+          {section.featured && (
+            <article class="featured-card">
+              <div class="featured-main">
+                <div class="project-meta">
+                  <span>{section.featured.category}</span>
+                  <span class="period">{section.featured.period}</span>
+                </div>
+                <h3>{section.featured.title}</h3>
+                <p>{section.featured.intro}</p>
+                <div class="tags">
+                  {section.featured.tags.map((tag) => <span class="tag">{tag}</span>)}
+                </div>
+              </div>
+              <ul class="featured-points">
+                {section.featured.highlights.map((point) => <li>{point}</li>)}
+              </ul>
+            </article>
+          )}
+
+          <div data-carousel>
+            <div class="track-bar">
+              <p class="track-label">{section.trackLabel}</p>
+              <div class="carousel-actions">
+                <button class="carousel-arrow" type="button" data-direction="-1" aria-label={`Previous ${section.title} projects`}>←</button>
+                <button class="carousel-arrow" type="button" data-direction="1" aria-label={`Next ${section.title} projects`}>→</button>
+              </div>
+            </div>
+
+            <div class="project-track" tabindex="0" role="region" aria-label={`${section.title} projects`}>
+              {section.projects.map((project) => (
+                <article class:list={["project-card", project.color, project.video ? "has-video" : "text-only"]}>
+                  {project.video && (
+                    <div class="project-media">
+                      <video
+                        class="video-blur"
+                        src={project.video}
+                        muted
+                        loop
+                        playsinline
+                        preload="none"
+                        aria-hidden="true"
+                        tabindex="-1"
+                      ></video>
+                      <video
+                        class="video-main"
+                        src={project.video}
+                        muted
+                        loop
+                        playsinline
+                        controls
+                        preload="metadata"
+                        aria-label={`${project.title} video demonstration`}
+                      ></video>
+                    </div>
+                  )}
+
+                  <div class="project-info">
+                    <div class="project-meta">
+                      <span>{project.category}</span>
+                      {project.period && <span class="period">{project.period}</span>}
+                    </div>
+                    <h3>{project.title}</h3>
+                    <p>{project.description}</p>
+                    {project.result && <p class="result">{project.result}</p>}
+                    {project.link && (
+                      <a class="card-link" href={project.link.href} target="_blank" rel="noopener noreferrer">{project.link.label}</a>
+                    )}
+                    <div class="tags">
+                      {project.tags.map((tag) => <span class="tag">{tag}</span>)}
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          {section.note && <p class="work-note">{section.note}</p>}
+        </section>
+      ))}
+
+      <!-- SKILLS -->
+      <section id="skills" class="section skills-section">
+        <div class="section-heading">
+          <h2>Things I work with</h2>
+          <p class="section-description">
+            Software, robotics, data and hardware tools from research, coursework and hands-on projects.
+          </p>
+        </div>
+        <div class="skills-list">
+          {skills.map((group) => (
+            <div class="skill-row">
+              <h3>{group.title}</h3>
+              <div class="tags">
+                {group.items.map((item) => <span class="tag">{item}</span>)}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!--
+      FUTURE SECTION: THE LITTLE LAB
+      Uncomment when personal projects are ready.
+      Idea for a first entry: the video of the big robot arm exploring the space
+      around it to map its workspace ("/media/lab/workspace_exploration.mp4").
+
+      <section id="lab" class="section lab-section">
+        <h2>The little lab</h2>
+        <p>Personal robotics experiments, little robots and technical challenges.</p>
+      </section>
+      -->
+
+      <!-- ABOUT -->
+      <section id="about" class="section about-section">
+        <div class="about-side">
+          {aboutPhoto && (
+            <div class="about-photo">
+              <img src={aboutPhoto} alt="Meriam Bouguecha" loading="lazy" />
+            </div>
+          )}
+
+          <div class="glance">
+            <h3>Education</h3>
+            <ul class="glance-list">
+              {education.map(([what, where]) => (
+                <li>
+                  <strong>{what}</strong>
+                  <span>{where}</span>
+                </li>
+              ))}
+            </ul>
+
+            <h3>Languages</h3>
+            <div class="language-grid">
+              {languages.map(([language, level]) => (
+                <div class="language-item">
+                  <strong>{language}</strong>
+                  <span>{level}</span>
+                </div>
+              ))}
+            </div>
+
+            <h3>Outside the lab</h3>
+            <div class="tags">
+              <span class="tag">Running</span>
+              <span class="tag">Music</span>
+              <span class="tag">Student associations</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-content">
+          <h2>Hands-on, always.</h2>
+          <p>
+            I’m a Robotics Master’s student at EPFL, with a Bachelor’s degree in
+            Microengineering and a minor in Computational Biology.
+          </p>
+          <p>
+            I like the place where software meets hardware: control algorithms,
+            sensors, embedded boards, and learning methods that have to survive contact
+            with a real robot. I’m happiest when an idea leaves the simulation and starts
+            moving something real.
+          </p>
+          <p>
+            I’ve also been a teaching assistant at EPFL for several years, supporting
+            100+ students in microcontrollers, electrotechnics and mathematical analysis.
+            Away from the lab I’m usually running, listening to far too much music, or
+            helping out in student associations like the Xplore rover team. Every project
+            I finish makes me a little more excited about this field.
+          </p>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact" class="contact-section">
+        <div class="contact-inner">
+          <h2>Looking for a master’s thesis in robotics.</h2>
+          <p>
+            If you’re building robots that work in the real world, I’d love to chat.
+          </p>
+          <div class="hero-buttons">
+            <a class="button primary" href={`mailto:${emailMain}`}>Email me</a>
+            <a class="button ghost" href="https://www.linkedin.com/in/meriam-bouguecha/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+            <a class="button ghost" href="https://github.com/MeriamBouguecha" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+            {cvUrl && <a class="button ghost" href={cvUrl} target="_blank" rel="noopener noreferrer">Download CV ↗</a>}
+          </div>
+          <p class="contact-emails">
+            <a href={`mailto:${emailMain}`}>{emailMain}</a>
+            <span aria-hidden="true">·</span>
+            <a href={`mailto:${emailSecondary}`}>{emailSecondary}</a>
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>© {new Date().getFullYear()} Meriam Bouguecha</span>
+      <span>Made with curiosity ♡</span>
+    </footer>
+
+    <script>
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      /* Carousels */
+      document.querySelectorAll<HTMLElement>("[data-carousel]").forEach((root) => {
+        const track = root.querySelector<HTMLElement>(".project-track");
+        const prev = root.querySelector<HTMLButtonElement>('[data-direction="-1"]');
+        const next = root.querySelector<HTMLButtonElement>('[data-direction="1"]');
+        if (!track || !prev || !next) return;
+
+        const update = () => {
+          prev.disabled = track.scrollLeft <= 4;
+          next.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
+        };
+
+        [prev, next].forEach((button) => {
+          button.addEventListener("click", () => {
+            const card = track.querySelector<HTMLElement>(".project-card");
+            const amount = (card?.offsetWidth ?? 400) + 20;
+            track.scrollBy({
+              left: Number(button.dataset.direction) * amount,
+              behavior: reduceMotion ? "auto" : "smooth",
+            });
+          });
+        });
+
+        track.addEventListener("scroll", update, { passive: true });
+        window.addEventListener("resize", update);
+        update();
+      });
+
+      /* Play project videos only while they are on screen */
+      if ("IntersectionObserver" in window && !reduceMotion) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              entry.target.querySelectorAll<HTMLVideoElement>("video").forEach((video) => {
+                if (entry.isIntersecting) video.play().catch(() => {});
+                else video.pause();
+              });
+            });
+          },
+          { threshold: 0.5 }
+        );
+        document.querySelectorAll(".project-media").forEach((media) => observer.observe(media));
+      }
+    </script>
+  </body>
 </html>
+
+<style>
+  :global(:root) {
+    --cream: #faf7f3;
+    --ink: #242a38;
+    --ink-soft: #566173;
+    --rose: #da918d;
+    --rose-text: #8a5560;
+    --line: #ece5e0;
+    --peach: #f8dfd9;
+    --blue: #e3edf8;
+    --lavender: #f0e8f1;
+    --gutter: max(6vw, calc((100vw - 1180px) / 2));
+  }
+  :global(*) { box-sizing: border-box; }
+  :global(html) { scroll-behavior: smooth; }
+  :global(body) {
+    margin: 0;
+    font-family: "Figtree", Arial, Helvetica, sans-serif;
+    color: var(--ink);
+    background: var(--cream);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  :global(a) { color: inherit; text-decoration: none; }
+  :global(button) { font: inherit; }
+  :global(img), :global(video) { max-width: 100%; }
+  :global(*:focus-visible) { outline: 3px solid #708fb3; outline-offset: 4px; }
+  :global(section[id]) { scroll-margin-top: 72px; }
+
+  h1, h2, h3, p { margin-top: 0; }
+  h1, h2, h3 {
+    font-family: "Bricolage Grotesque", "Figtree", Arial, sans-serif;
+    font-weight: 700;
+  }
+  h1 {
+    font-size: clamp(36px, 4.6vw, 62px);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+  }
+  h1 em { color: var(--rose); font-style: normal; }
+  .greeting {
+    display: block;
+    margin-bottom: 16px;
+    font-size: 0.4em;
+    letter-spacing: -0.01em;
+    color: var(--rose-text);
+  }
+  h2 {
+    font-size: clamp(30px, 3.6vw, 46px);
+    letter-spacing: -0.025em;
+    line-height: 1.12;
+    margin-bottom: 12px;
+  }
+  h3 { font-size: 21px; line-height: 1.3; letter-spacing: -0.01em; }
+
+  /* ---------- header ---------- */
+  .site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px var(--gutter);
+    background: rgba(250, 247, 243, 0.9);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+    position: sticky;
+    top: 0;
+    z-index: 20;
+  }
+  .logo {
+    font-family: "Bricolage Grotesque", Arial, sans-serif;
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: -0.06em;
+  }
+  .logo span { color: var(--rose); }
+  nav { display: flex; gap: 26px; flex-wrap: wrap; font-size: 14px; font-weight: 600; }
+  nav a:hover { color: var(--rose-text); }
+
+  /* ---------- hero ---------- */
+  .hero {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: center;
+    gap: 64px;
+    padding: 80px var(--gutter) 100px;
+  }
+  .hero-content { max-width: 680px; }
+  .status {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 30px;
+    padding: 7px 14px;
+    border-radius: 100px;
+    background: #fff;
+    border: 1px solid var(--line);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink-soft);
+  }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: #6fae8b; }
+  .intro { font-size: 19px; color: var(--ink-soft); max-width: 540px; }
+  .hero-buttons { display: flex; gap: 12px; margin-top: 32px; flex-wrap: wrap; }
+  .button {
+    border-radius: 100px;
+    padding: 13px 22px;
+    font-weight: 700;
+    font-size: 14px;
+    transition: transform .2s;
+  }
+  .button:hover { transform: translateY(-2px); }
+  .button.primary { background: #f4b9b0; color: var(--ink); }
+  .button.secondary { border: 1px solid #d9ccc6; }
+  .button.ghost { border: 1px solid rgba(250, 247, 243, 0.35); color: var(--cream); }
+  .hero-visual {
+    padding: 14px;
+    background: #e0ebf5;
+    border-radius: 24px;
+    transform: rotate(1.5deg);
+  }
+  .hero-visual img {
+    display: block;
+    width: 100%;
+    height: 430px;
+    object-fit: cover;
+    object-position: center 42%;
+    border-radius: 15px;
+    filter: saturate(.92) contrast(1.02);
+  }
+  .photo-caption {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 7px 0;
+    font-size: 13px;
+    color: #4f6379;
+  }
+
+  /* ---------- sections ---------- */
+  .section { padding: 88px var(--gutter); }
+  .section-heading { margin-bottom: 36px; }
+  .section-num {
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--rose-text);
+  }
+  .section-description { color: var(--ink-soft); max-width: 580px; font-size: 16px; margin-bottom: 0; }
+  .work-section.compact { background: #f3f6f8; }
+
+  /* featured card */
+  .featured-card {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 44px;
+    margin-bottom: 52px;
+    padding: 40px;
+    background: var(--blue);
+    border-radius: 24px;
+  }
+  .featured-main h3 {
+    font-size: clamp(26px, 3vw, 34px);
+    letter-spacing: -0.025em;
+    margin-bottom: 14px;
+  }
+  .featured-main > p { color: #4d586a; font-size: 16px; max-width: 560px; }
+  .featured-points {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    align-self: center;
+  }
+  .featured-points li {
+    position: relative;
+    padding: 16px 0 16px 26px;
+    border-top: 1px solid rgba(36, 42, 56, 0.12);
+    font-size: 15px;
+    color: #3b4558;
+  }
+  .featured-points li:last-child { border-bottom: 1px solid rgba(36, 42, 56, 0.12); }
+  .featured-points li::before {
+    content: "";
+    position: absolute;
+    left: 2px;
+    top: 26px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--rose);
+  }
+
+  /* carousel */
+  .track-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+  }
+  .track-label { margin: 0; font-size: 14px; font-weight: 600; color: var(--ink-soft); }
+  .carousel-actions { display: flex; gap: 10px; }
+  .carousel-arrow {
+    width: 44px;
+    height: 44px;
+    border: 1px solid #e4dcd7;
+    background: #fff;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    color: var(--ink);
+    transition: background .2s, opacity .2s;
+  }
+  .carousel-arrow:hover:not(:disabled) { background: #f4b9b0; }
+  .carousel-arrow:disabled { opacity: .35; cursor: default; }
+
+  .project-track {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding: 4px 2px 22px;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+    scrollbar-color: #d6b6b4 transparent;
+    overscroll-behavior-inline: contain;
+  }
+  .project-card {
+    flex: 0 0 clamp(290px, 34vw, 420px);
+    scroll-snap-align: start;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .compact .project-card { flex-basis: clamp(280px, 30vw, 360px); }
+  .project-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(40, 40, 60, .07);
+  }
+  .project-media {
+    height: 260px;
+    position: relative;
+    overflow: hidden;
+    background: #e3e9ef;
+    isolation: isolate;
+  }
+  .video-blur {
+    position: absolute;
+    inset: -20%;
+    width: 140%;
+    height: 140%;
+    object-fit: cover;
+    filter: blur(25px) brightness(.85);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .video-main {
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .project-info {
+    padding: 26px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  .project-card.text-only .project-info { padding-top: 30px; }
+  .project-card.text-only.peach { background: var(--peach); }
+  .project-card.text-only.blue { background: var(--blue); }
+  .project-card.text-only.lavender { background: var(--lavender); }
+
+  .project-meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 12px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--rose-text);
+  }
+  .project-meta .period { flex-shrink: 0; font-weight: 600; color: var(--ink-soft); }
+  .project-info h3 { margin-bottom: 10px; }
+  .project-info > p { color: #4d586a; font-size: 14.5px; line-height: 1.65; margin-bottom: 0; }
+  .project-info > p.result {
+    margin-top: 14px;
+    padding: 10px 14px;
+    border-radius: 12px;
+    background: rgba(36, 42, 56, 0.06);
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .card-link { margin-top: 14px; font-size: 14px; font-weight: 700; color: var(--rose-text); }
+  .card-link:hover { text-decoration: underline; }
+
+  .tags { display: flex; gap: 7px; flex-wrap: wrap; margin-top: auto; padding-top: 18px; }
+  .tag {
+    background: rgba(255, 255, 255, .72);
+    border: 1px solid rgba(70, 85, 110, .08);
+    padding: 5px 11px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #4a5569;
+  }
+  .has-video .tag { background: #f3f1ef; }
+  .featured-card .tag { background: rgba(255, 255, 255, .7); }
+  .work-note { margin: 12px 0 0; font-size: 14px; color: var(--ink-soft); max-width: 640px; }
+
+  /* ---------- skills ---------- */
+  .skills-section { background: #f8eee9; }
+  .skills-list { border-bottom: 1px solid rgba(36, 42, 56, 0.12); }
+  .skill-row {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 24px;
+    align-items: start;
+    padding: 22px 0;
+    border-top: 1px solid rgba(36, 42, 56, 0.12);
+  }
+  .skill-row h3 { font-size: 18px; margin: 4px 0 0; }
+  .skill-row .tags { margin-top: 0; padding-top: 0; }
+  .skill-row .tag { background: #fff; }
+
+  /* ---------- about ---------- */
+  .about-section {
+    display: grid;
+    grid-template-columns: .85fr 1.15fr;
+    align-items: start;
+    gap: 80px;
+  }
+  .about-side { display: grid; gap: 28px; }
+  .about-photo {
+    background: #f3ccc6;
+    padding: 12px;
+    border-radius: 23px;
+    transform: rotate(-2deg);
+  }
+  .about-photo img {
+    display: block;
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 15px;
+  }
+  .glance {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    padding: 28px;
+  }
+  .glance h3 {
+    font-size: 15px;
+    margin: 26px 0 12px;
+    color: var(--rose-text);
+  }
+  .glance h3:first-child { margin-top: 0; }
+  .glance-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+  .glance-list li { display: grid; font-size: 14px; line-height: 1.45; }
+  .glance-list span { color: var(--ink-soft); font-size: 13px; }
+  .glance .tags { padding-top: 0; margin-top: 0; }
+  .glance .tag { background: #f7f4f2; }
+  .language-grid { display: grid; gap: 8px; }
+  .language-item { display: flex; justify-content: space-between; gap: 12px; font-size: 14px; }
+  .language-item span { color: var(--ink-soft); }
+  .about-content > p { color: #4d586a; font-size: 17px; max-width: 600px; }
+
+  /* ---------- contact ---------- */
+  .contact-section {
+    background: #2a3144;
+    color: var(--cream);
+    padding: 96px var(--gutter);
+  }
+  .contact-inner { max-width: 720px; }
+  .contact-section h2 { color: var(--cream); }
+  .contact-section p { color: rgba(250, 247, 243, 0.78); font-size: 18px; }
+  .contact-section .hero-buttons { margin-top: 28px; }
+  .contact-emails {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 12px;
+    margin: 28px 0 0;
+    font-size: 15px !important;
+  }
+  .contact-emails a { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(250, 247, 243, 0.35); }
+  .contact-emails a:hover { text-decoration-color: var(--rose); }
+
+  footer {
+    padding: 26px var(--gutter);
+    display: flex;
+    justify-content: space-between;
+    gap: 18px;
+    flex-wrap: wrap;
+    font-size: 13px;
+    color: #6f7686;
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 900px) {
+    .hero { gap: 36px; }
+    .about-section { gap: 40px; }
+    .featured-card { grid-template-columns: 1fr; gap: 24px; padding: 32px; }
+  }
+  @media (max-width: 700px) {
+    .site-header { position: static; flex-direction: column; gap: 14px; padding: 18px 5%; }
+    nav { justify-content: center; gap: 14px; font-size: 13px; }
+    :global(section[id]) { scroll-margin-top: 16px; }
+    .hero { grid-template-columns: 1fr; padding: 56px 6% 72px; }
+    .hero-visual { transform: none; max-width: 440px; }
+    .hero-visual img { height: 350px; }
+    .section { padding: 64px 6%; }
+    .contact-section { padding: 72px 6%; }
+    footer { padding: 24px 6%; }
+    .featured-card { padding: 26px 22px; }
+    .project-card, .compact .project-card { flex-basis: min(84vw, 360px); }
+    .project-media { height: 225px; }
+    .skill-row { grid-template-columns: 1fr; gap: 12px; }
+    .about-section { grid-template-columns: 1fr; }
+    .about-photo { transform: none; max-width: 420px; }
+    .about-photo img { height: 340px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    :global(html) { scroll-behavior: auto; }
+    .project-card, .button, .carousel-arrow { transition: none; }
+  }
+</style>
