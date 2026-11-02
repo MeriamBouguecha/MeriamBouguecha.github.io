@@ -84,9 +84,9 @@ const roboticsProjects: Project[] = [
     focus: ["Background & segmentation", "CHF / EUR / OOD", "Denomination recognition"],
     category: "Computer vision",
     description:
-      "Built a team pipeline to identify Swiss franc and euro coins on neutral, noisy and hand backgrounds: background detection, coin segmentation, then CHF/EUR/out-of-distribution classification with a fine-tuned AlexNet. CHF denominations were determined from size and colour; EUR denominations used a fine-tuned ResNet18, chosen as a relatively small model. We compared learning rates on the validation set before generating the final Kaggle submission.",
-    result: "78% validation accuracy for the EUR denomination classifier (ResNet18); not an end-to-end system score.",
-    tags: ["Python", "OpenCV", "AlexNet", "ResNet18", "Segmentation", "Transfer Learning"],
+      "Team project to detect Swiss franc and euro coins across varied backgrounds. Combined image segmentation, currency classification and denomination recognition using geometric features and fine-tuned neural networks.",
+    result: "EUR denomination classifier (ResNet18): 78% validation accuracy.",
+    tags: ["Python", "OpenCV", "Segmentation", "Transfer Learning"],
     color: "lavender",
   },
   {
@@ -175,13 +175,12 @@ const biomedicalProjects: Project[] = [
     color: "peach",
   },
   {
-    title: "Preference-Based Machine Learning",
-    focus: ["PPO-based RLHF", "DPO comparison", "Dataset sizes & random seeds"],
-    category: "Machine learning",
+    title: "Human Preference Learning",
+    focus: ["Preference-based learning", "RLHF & DPO", "CartPole & Pendulum"],
+    category: "Reinforcement learning course project",
     period: "2025",
     description:
-      "Implemented and compared PPO-based RLHF and DPO in PyTorch and Gym on CartPole and Pendulum, across five preference-dataset sizes (50–5000) and six random seeds.",
-    result: "Found regimes where a learned reward model beats DPO",
+      "An introductory course project exploring how preferences can guide reinforcement learning. Implemented and compared PPO-based RLHF and DPO on CartPole and Pendulum using PyTorch and Gym.",
     tags: ["Python", "PyTorch", "RL", "Evaluation"],
     color: "blue",
   },
@@ -239,7 +238,7 @@ const skills = [
   },
   {
     title: "Embedded & Hardware",
-    items: ["STM32", "BeagleBone", "Arduino", "CAN", "UART", "I2C", "SPI", "IMU", "Altium", "LabVIEW"],
+    items: ["STM32", "BeagleBone", "Arduino", "CAN", "UART", "I2C", "SPI", "IMU", "Altium", "LabVIEW", "CATIA · coursework"],
   },
   {
     title: "Data & Experimentation",
