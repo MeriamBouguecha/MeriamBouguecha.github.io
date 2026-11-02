@@ -5,6 +5,7 @@ type Project = {
   period?: string;
   description: string;
   result?: string;
+  focus?: string[];
   tags: string[];
   video?: string;
   link?: { href: string; label: string };
@@ -27,13 +28,13 @@ const featured = {
   category: "Robotics R&D intern, Sonceboz",
   period: "Sep 2026 – present",
   intro:
-    "Leading a state-of-the-art review and benchmark of control and learning methods for dexterous manipulation on a five-finger robotic hand: classical control, MPC, imitation learning, RL, ACT and diffusion-based policies.",
+    "Reviewing and benchmarking approaches to dexterous manipulation on a five-finger robotic hand, from analytical, model-based control and MPC to reinforcement learning and imitation learning, including ACT and diffusion policies, and vision-language-action (VLA) models. The aim is to compare their assumptions, sensing requirements and suitability for the hand and its manipulation tasks.",
   highlights: [
     "Evaluating hand platforms, MuJoCo-based simulation resources and software stacks",
     "Defining benchmark tasks, success metrics and repeatable test conditions",
     "Assessing how tactile, proprioceptive and visual feedback can support manipulation policies",
   ],
-  tags: ["MuJoCo", "MPC", "RL", "Imitation Learning", "ACT", "Diffusion Policies", "Python"],
+  tags: ["MuJoCo", "Classical Control", "MPC", "RL", "Imitation Learning", "ACT", "Diffusion Policies", "VLA", "Python"],
 };
 
 /* ---------- 01 · Robotics & Engineering ---------- */
@@ -43,8 +44,8 @@ const roboticsProjects: Project[] = [
     category: "Rehabilitation robotics, REHAssist Lab",
     period: "2026",
     description:
-      "Real-time sensing-to-actuation pipeline on a BeagleBone Black: VQF-filtered IMU data and CAN control of three AK60-6 actuators. A four-state intention-detection controller with gravity compensation, using the real-time-compatible classifier picked after comparing KNN, PCA/SVD and azimuth-based approaches.",
-    result: "Tracking errors of 3.1°, 4.8° and 7.0° · 17.3 ms control loop",
+      "Built a sensing-to-actuation pipeline running on a BeagleBone Black, an embedded single-board computer, with VQF-filtered IMU data and CAN control of three AK60-6 actuators. Because the IMUs had no magnetometers, I explored KNN, PCA/SVD and azimuth-based classification to make motion interpretation more reliable. The selected classifier runs on the board alongside a four-state intention-detection controller and gravity compensation.",
+    result: "17.3 ms control-loop runtime on the BeagleBone Black",
     tags: ["Python", "BeagleBone", "IMU", "CAN", "Control"],
     video: "/media/exoskeleton/mirroring_test.mp4",
     color: "peach",
@@ -54,39 +55,43 @@ const roboticsProjects: Project[] = [
     category: "Embedded robotics",
     period: "2025",
     description:
-      "Real-time embedded software on STM32 for bilateral haptic teleoperation: encoder, Hall-effect and current sensing, UART communication and PD force feedback, tested for latency, tracking and reliability.",
-    tags: ["STM32", "C", "UART", "Haptics", "PD Control"],
+      "Developed embedded software on STM32 to transmit motion and render force sensations between two haptic boards, exploring the bilateral feedback principle used in surgical teleoperation. Implemented virtual-wall rendering and impedance control, with encoder, Hall-effect and current sensing, UART communication and PD feedback.",
+    tags: ["STM32", "C", "UART", "Virtual Wall", "Impedance Control", "Haptics"],
     video: "/media/haptics/haptics_teleop.mp4",
     color: "blue",
   },
   {
-    title: "Vision-Guided Manipulation",
-    category: "Robot manipulation",
+    title: "Robot Tower-Building Lab",
+    category: "Robot learning and perception lab",
     description:
-      "Camera-based perception connected to robotic pick-and-place: camera calibration, object detection and manipulation on a physical robot arm.",
-    tags: ["Python", "Computer Vision", "Manipulation", "Calibration"],
+      "A lab exercise in which a robot arm had to build the tallest possible tower from available objects. We used PCA-based object classification and ranked objects by size to guide stacking. Through imitation learning, we taught the arm the movements needed to pick up and place the objects.",
+    tags: ["Python", "PCA", "Imitation Learning", "Object Classification", "Manipulation"],
     video: "/media/manipulation/pick_and_place.mp4",
     color: "lavender",
   },
   {
-    title: "Autonomous Mobile Robot",
+    title: "Mobile Robotics Projects",
+    focus: ["Obstacle detection", "Motion planning", "Computer vision"],
     category: "Perception and navigation",
     period: "2024",
     description:
-      "Autonomous maze navigation for a Thymio robot: a Python/OpenCV vision pipeline for perception, combined with obstacle detection, path planning and reactive motor control.",
+      "Mobile robotics coursework involving obstacle detection, motion planning and some computer vision. My work focused on helping the robot detect obstacles and plan its movements, with Python and OpenCV used for the vision component.",
     tags: ["Python", "OpenCV", "Path Planning"],
     color: "blue",
   },
   {
     title: "Coin Detection",
+    focus: ["Background & segmentation", "CHF / EUR / OOD", "Denomination recognition"],
     category: "Computer vision",
     description:
-      "Detection and classification of coins in images. A learned model fell short, so I got strong results with careful OpenCV preprocessing, classical classifiers and a lot of experimentation.",
-    tags: ["Python", "OpenCV", "Classifiers", "Image Processing"],
+      "Built a team pipeline to identify Swiss franc and euro coins on neutral, noisy and hand backgrounds: background detection, coin segmentation, then CHF/EUR/out-of-distribution classification with a fine-tuned AlexNet. CHF denominations were determined from size and colour; EUR denominations used a fine-tuned ResNet18, chosen as a relatively small model. We compared learning rates on the validation set before generating the final Kaggle submission.",
+    result: "78% validation accuracy for the EUR denomination classifier (ResNet18); not an end-to-end system score.",
+    tags: ["Python", "OpenCV", "AlexNet", "ResNet18", "Segmentation", "Transfer Learning"],
     color: "lavender",
   },
   {
     title: "Model Predictive Control",
+    focus: ["Constrained optimization", "Lane & speed tracking", "State & disturbance estimation"],
     category: "Optimal control",
     description:
       "Constrained MPC controllers for vehicle lane-changing and speed tracking, including state and disturbance estimation.",
@@ -95,15 +100,18 @@ const roboticsProjects: Project[] = [
   },
   {
     title: "Double SCARA Robot",
+    focus: ["Mechanical assembly", "Forward & inverse kinematics", "Position control & interface"],
     category: "Robot design and control, UPM Madrid",
     period: "2022 – 2023",
     description:
       "Designed, assembled and controlled a double SCARA arm from scratch in a multidisciplinary team: forward and inverse kinematics, position control, and a custom human–machine interface.",
     tags: ["MATLAB", "Arduino", "C++", "Kinematics"],
+    link: { href: "https://www.youtube.com/watch?v=w6C2n_6AX_E", label: "Watch the robot construction video ↗" },
     color: "blue",
   },
   {
     title: "Xplore Rover Electronics",
+    focus: ["IMU board design", "CAN communication", "Hardware validation"],
     category: "Electronics, Xplore rover team",
     period: "2023 – 2024",
     description:
@@ -117,16 +125,18 @@ const roboticsProjects: Project[] = [
 const biomedicalProjects: Project[] = [
   {
     title: "3D Gait Analysis",
+    focus: ["3D movement features", "Cadence & asymmetry", "Visual scoring framework"],
     category: "Human movement analysis, REHAssist Lab",
     period: "2025",
     description:
-      "3D movement-analysis pipeline on heterogeneous datasets: preprocessing, temporal feature extraction and joint-motion analysis, with a scoring framework for movement structure, timing and amplitude.",
+      "Built a 3D gait-analysis pipeline with preprocessing, temporal feature extraction and joint-motion analysis. Designed a detailed scoring framework to make possible sources of gait abnormalities easier to inspect visually, such as cadence, asymmetries, timing and movement amplitude, rather than reducing the assessment to a single overall score.",
     result: "81.7% accuracy, healthy vs post-stroke gait",
     tags: ["Python", "Feature Extraction", "Classification"],
     color: "lavender",
   },
   {
     title: "3D Microscopy & Image Analysis",
+    focus: ["3D preprocessing", "Volumetric analysis", "Quality control"],
     category: "Research assistant, Living Patterns Lab",
     period: "2024",
     description:
@@ -136,15 +146,17 @@ const biomedicalProjects: Project[] = [
   },
   {
     title: "Biological Data Analysis",
+    focus: ["RNA sequencing data", "Statistical analysis", "Reproducible workflows"],
     category: "Research assistant, LISP lab",
     period: "Sep 2025 – Apr 2026",
     description:
-      "Quality control, preprocessing and statistical analysis of large biological datasets in R, with reproducible workflows and structured databases for traceable results.",
-    tags: ["R", "Statistics", "QC", "Reproducibility"],
+      "Quality control, preprocessing and statistical analysis of biological datasets, including RNA sequencing data, in R. Built reproducible workflows and structured databases to keep analyses and results traceable.",
+    tags: ["R", "RNA Sequencing", "Statistics", "QC", "Reproducibility"],
     color: "blue",
   },
   {
     title: "Optical Instrumentation",
+    focus: ["Fluorescence sensing", "Data acquisition", "Calibration & signals"],
     category: "Bioinstrumentation",
     period: "2024",
     description:
@@ -154,6 +166,7 @@ const biomedicalProjects: Project[] = [
   },
   {
     title: "Neural Signals & Medical Imaging",
+    focus: ["CT & MRI data", "Preprocessing & QC", "Quantitative analysis"],
     category: "Signal processing",
     period: "2025",
     description:
@@ -163,6 +176,7 @@ const biomedicalProjects: Project[] = [
   },
   {
     title: "Preference-Based Machine Learning",
+    focus: ["PPO-based RLHF", "DPO comparison", "Dataset sizes & random seeds"],
     category: "Machine learning",
     period: "2025",
     description:
@@ -173,6 +187,7 @@ const biomedicalProjects: Project[] = [
   },
   {
     title: "Predicting Movie Ratings",
+    focus: ["Dataset integration", "Statistical testing", "Random Forest prediction"],
     category: "Data analysis, Applied Data Analysis course",
     period: "2024",
     description:
@@ -212,7 +227,7 @@ const sections = [
 const skills = [
   {
     title: "Programming & Software",
-    items: ["Python", "C/C++", "MATLAB", "R", "Git", "Linux", "Docker", "Jupyter", "CMake", "Qt"],
+    items: ["Python", "C", "C++", "JavaScript", "MATLAB", "R", "Git", "Linux", "Docker", "Jupyter", "CMake", "Qt"],
   },
   {
     title: "Robotics & Control",
@@ -228,7 +243,7 @@ const skills = [
   },
   {
     title: "Data & Experimentation",
-    items: ["Data Preprocessing", "Statistics", "Sensor Fusion", "Filtering", "Calibration", "Testing", "Quality Control"],
+    items: ["Data Preprocessing", "Statistics", "Sensor Fusion", "Filtering", "Kalman Filter", "Calibration", "Testing", "Quality Control"],
   },
 ];
 
@@ -284,9 +299,10 @@ const languages = [
             Curious about how things work. <em>Even more curious about making them work.</em>
           </h1>
           <p class="intro">
-            Robotics Master’s student at EPFL, building controllers and systems for
-            machines that work with people, from dexterous hands to exoskeletons.
-            I like to understand the human first, then design the robot around it.
+            I’m a Robotics Master’s student at EPFL, drawn to the challenge of turning
+            sensing, control and learning into physical motion. From robotic hands
+            to rehabilitation devices, I enjoy connecting algorithms with hardware
+            and understanding what makes a robot work in practice.
           </p>
           <div class="hero-buttons">
             <a class="button primary" href="#robotics">Explore my work</a>
@@ -370,6 +386,15 @@ const languages = [
                         preload="metadata"
                         aria-label={`${project.title} video demonstration`}
                       ></video>
+                    </div>
+                  )}
+
+                  {!project.video && project.focus && (
+                    <div class="project-cover">
+                      <p class="cover-label">At a glance</p>
+                      <ul class="cover-focus">
+                        {project.focus.map((item) => <li>{item}</li>)}
+                      </ul>
                     </div>
                   )}
 
@@ -719,8 +744,8 @@ const languages = [
   /* featured card */
   .featured-card {
     display: grid;
-    grid-template-columns: 1.15fr 0.85fr;
-    gap: 44px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
     margin-bottom: 52px;
     padding: 40px;
     background: var(--blue);
@@ -731,12 +756,15 @@ const languages = [
     letter-spacing: -0.025em;
     margin-bottom: 14px;
   }
-  .featured-main > p { color: #4d586a; font-size: 16px; max-width: 560px; }
+  .featured-main { min-width: 0; }
+  .featured-main > p { color: #4d586a; font-size: 16px; max-width: none; }
   .featured-points {
     list-style: none;
     margin: 0;
     padding: 0;
-    align-self: center;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
   }
   .featured-points li {
     position: relative;
@@ -745,7 +773,7 @@ const languages = [
     font-size: 15px;
     color: #3b4558;
   }
-  .featured-points li:last-child { border-bottom: 1px solid rgba(36, 42, 56, 0.12); }
+  .featured-points li { border-bottom: 1px solid rgba(36, 42, 56, 0.12); }
   .featured-points li::before {
     content: "";
     position: absolute;
@@ -808,6 +836,7 @@ const languages = [
   }
   .project-media {
     height: 260px;
+    flex: 0 0 260px;
     position: relative;
     overflow: hidden;
     background: #e3e9ef;
@@ -837,10 +866,35 @@ const languages = [
     flex-direction: column;
     flex: 1;
   }
-  .project-card.text-only .project-info { padding-top: 30px; }
-  .project-card.text-only.peach { background: var(--peach); }
-  .project-card.text-only.blue { background: var(--blue); }
-  .project-card.text-only.lavender { background: var(--lavender); }
+  .project-cover {
+    height: 260px;
+    flex: 0 0 260px;
+    padding: 26px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 18px;
+    border-bottom: 1px solid var(--line);
+  }
+  .peach .project-cover { background: var(--peach); }
+  .blue .project-cover { background: var(--blue); }
+  .lavender .project-cover { background: var(--lavender); }
+  .cover-label {
+    margin: 0;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    color: var(--ink-soft);
+  }
+  .cover-focus { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  .cover-focus li {
+    padding-left: 15px;
+    border-left: 3px solid var(--rose);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.4;
+  }
 
   .project-meta {
     display: flex;
@@ -876,7 +930,7 @@ const languages = [
     font-weight: 600;
     color: #4a5569;
   }
-  .has-video .tag { background: #f3f1ef; }
+  .project-info .tag { background: #f3f1ef; }
   .featured-card .tag { background: rgba(255, 255, 255, .7); }
   .work-note { margin: 12px 0 0; font-size: 14px; color: var(--ink-soft); max-width: 640px; }
 
@@ -973,6 +1027,7 @@ const languages = [
     .hero { gap: 36px; }
     .about-section { gap: 40px; }
     .featured-card { grid-template-columns: 1fr; gap: 24px; padding: 32px; }
+    .featured-points { grid-template-columns: 1fr; gap: 0; }
   }
   @media (max-width: 700px) {
     .site-header { position: static; flex-direction: column; gap: 14px; padding: 18px 5%; }
@@ -986,7 +1041,8 @@ const languages = [
     footer { padding: 24px 6%; }
     .featured-card { padding: 26px 22px; }
     .project-card, .compact .project-card { flex-basis: min(84vw, 360px); }
-    .project-media { height: 225px; }
+    .project-media, .project-cover { height: 225px; flex-basis: 225px; }
+    .project-meta { flex-wrap: wrap; }
     .skill-row { grid-template-columns: 1fr; gap: 12px; }
     .about-section { grid-template-columns: 1fr; }
     .about-photo { transform: none; max-width: 420px; }
