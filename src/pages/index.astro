@@ -8,6 +8,8 @@ type Project = {
   focus?: string[];
   tags: string[];
   video?: string;
+  image?: string;
+  imageAlt?: string;
   link?: { href: string; label: string };
 };
 
@@ -21,8 +23,8 @@ const aboutPhoto = "";
 const emailMain = "meriam.bouguecha@epfl.ch";
 const emailSecondary = "bougachamariem@gmail.com";
 
-/* ---------- Featured: current internship ---------- */
-const featured = {
+/* ---------- Current work experience ---------- */
+const currentRole = {
   title: "Dexterous Robotic Hand Control",
   category: "Robotics R&D intern, Sonceboz",
   period: "Sep 2026 – present",
@@ -46,7 +48,7 @@ const roboticsProjects: Project[] = [
       "Built a sensing-to-actuation pipeline running on a BeagleBone Black, an embedded single-board computer, with VQF-filtered IMU data and CAN control of three AK60-6 actuators. Because the IMUs had no magnetometers, I explored KNN, PCA/SVD and azimuth-based classification to make motion interpretation more reliable. The selected classifier runs on the board alongside a four-state intention-detection controller and gravity compensation.",
     result: "17.3 ms control-loop runtime on the BeagleBone Black",
     tags: ["Python", "BeagleBone", "IMU", "CAN", "Control"],
-    video: "/media/exoskeleton/mirroring_test.mp4",
+    video: "/media/exoskeleton/mirroring_test-web.mp4",
   },
   {
     title: "Haptic Teleoperation",
@@ -55,7 +57,7 @@ const roboticsProjects: Project[] = [
     description:
       "Developed embedded software on STM32 to transmit motion and render force sensations between two haptic boards, exploring the bilateral feedback principle used in surgical teleoperation. Implemented virtual-wall rendering and impedance control, with encoder, Hall-effect and current sensing, UART communication and PD feedback.",
     tags: ["STM32", "C", "UART", "Virtual Wall", "Impedance Control", "Haptics"],
-    video: "/media/haptics/haptics_teleop.mp4",
+    video: "/media/haptics/haptics_teleop-web.mp4",
   },
   {
     title: "Robot Tower-Building Lab",
@@ -63,10 +65,12 @@ const roboticsProjects: Project[] = [
     description:
       "A lab exercise in which a robot arm had to build the tallest possible tower from available objects. We used PCA-based object classification and ranked objects by size to guide stacking. Through imitation learning, we taught the arm the movements needed to pick up and place the objects.",
     tags: ["Python", "ROS 2", "PCA", "Imitation Learning", "Object Classification", "Manipulation"],
-    video: "/media/manipulation/pick_and_place.mp4",
+    video: "/media/manipulation/pick_and_place-web.mp4",
   },
   {
     title: "Mobile Robotics Projects",
+    image: "/media/MobileRobotics.png",
+    imageAlt: "Mobile robotics project: robot navigation and obstacle detection",
     focus: ["Obstacle detection", "Motion planning", "Computer vision"],
     category: "Perception and navigation",
     period: "2024",
@@ -76,6 +80,8 @@ const roboticsProjects: Project[] = [
   },
   {
     title: "Coin Detection",
+    image: "/media/coinsproject.jpg",
+    imageAlt: "Coin detection project with Swiss franc and euro coins",
     focus: ["Background & segmentation", "CHF / EUR / OOD", "Denomination recognition"],
     category: "Computer vision",
     description:
@@ -85,14 +91,19 @@ const roboticsProjects: Project[] = [
   },
   {
     title: "Model Predictive Control",
+    period: "2024 – 2025",
+    video: "/media/mpc/highway-mpc.mp4",
+    link: { href: "https://github.com/MeriamBouguecha/MPC_Project_2024", label: "View code ↗" },
     focus: ["Constrained optimization", "Lane & speed tracking", "State & disturbance estimation"],
     category: "Optimal control",
     description:
-      "Constrained MPC controllers for vehicle lane-changing and speed tracking, including state and disturbance estimation.",
-    tags: ["MATLAB", "MPC", "Optimization"],
+      "Developed linear and nonlinear MPC controllers for highway speed tracking, lane changes and overtaking. Combined a nonlinear bicycle model with constrained optimization, disturbance estimation for offset-free tracking, and an elliptical separation constraint for collision avoidance. Simulated the vehicle in MATLAB using YALMIP and CasADi/IPOPT.",
+    tags: ["MATLAB", "Linear & Nonlinear MPC", "CasADi", "IPOPT", "YALMIP", "MPT3", "Quadratic Programming"],
   },
   {
     title: "Double SCARA Robot",
+    image: "/media/scara/double-scara.png",
+    imageAlt: "Double SCARA robot built for the robot design and control project",
     focus: ["Mechanical assembly", "Forward & inverse kinematics", "Position control & interface"],
     category: "Robot design and control, UPM Madrid",
     period: "2022 – 2023",
@@ -125,24 +136,6 @@ const biomedicalProjects: Project[] = [
     tags: ["Python", "Feature Extraction", "Classification"],
   },
   {
-    title: "3D Microscopy & Image Analysis",
-    focus: ["3D preprocessing", "Volumetric analysis", "Quality control"],
-    category: "Research assistant, Living Patterns Lab",
-    period: "2024",
-    description:
-      "Processed 3D microscopy data in Python and ImageJ: preprocessing, volumetric analysis, feature extraction and QC workflows. Also contributed to microscope hardware setup, Qt interface updates and documentation.",
-    tags: ["Python", "ImageJ", "Image Processing", "Qt"],
-  },
-  {
-    title: "Biological Data Analysis",
-    focus: ["RNA sequencing data", "Statistical analysis", "Reproducible workflows"],
-    category: "Research assistant, LISP lab",
-    period: "Sep 2025 – Apr 2026",
-    description:
-      "Quality control, preprocessing and statistical analysis of biological datasets, including RNA sequencing data, in R. Built reproducible workflows and structured databases to keep analyses and results traceable.",
-    tags: ["R", "RNA Sequencing", "Statistics", "QC", "Reproducibility"],
-  },
-  {
     title: "Optical Instrumentation",
     focus: ["Fluorescence sensing", "Data acquisition", "Calibration & signals"],
     category: "Bioinstrumentation",
@@ -171,6 +164,7 @@ const biomedicalProjects: Project[] = [
   },
   {
     title: "Predicting Movie Ratings",
+    video: "/media/ada/movies-ada-project.mp4",
     focus: ["Dataset integration", "Statistical testing", "Random Forest prediction"],
     category: "Data analysis, Applied Data Analysis course",
     period: "2024",
@@ -182,30 +176,56 @@ const biomedicalProjects: Project[] = [
   },
 ];
 
-const sections = [
+const researchExperience = [
   {
-    id: "robotics",
-    number: "01",
-    title: "Robotics & Engineering",
-    subtitle: "Control, perception, embedded systems, simulation, manipulation and autonomous systems.",
-    projects: roboticsProjects,
-    trackLabel: `${roboticsProjects.length} more projects`,
-    featured,
-    note: "Part of this work comes from research and industry projects, so the code stays in private repositories. I’m happy to walk through the details.",
-    variant: "main",
-    hideTitles: false,
+    period: "Sep 2025 – Apr 2026",
+    organisation: "LISP Lab",
+    role: "Research Assistant",
+    title: "Biological data analysis",
+    description: "Analyzed biological datasets, including RNA sequencing data, in R. Built reproducible preprocessing, quality-control and statistical workflows, with structured databases to keep analyses and results traceable.",
+    tools: ["R", "RNA sequencing", "Statistics", "Reproducible workflows"],
   },
   {
-    id: "biomedical",
-    number: "02",
-    title: "Biomedical & Data Projects",
-    subtitle: "Scientific imaging, human movement analysis, biological datasets and machine learning.",
-    projects: biomedicalProjects,
-    trackLabel: `${biomedicalProjects.length} projects`,
-    featured: undefined,
+    period: "2024",
+    organisation: "Living Patterns Lab",
+    role: "Research Assistant",
+    title: "3D microscopy & image analysis",
+    description: "Processed 3D microscopy data in Python and ImageJ for volumetric analysis, feature extraction and quality control. Also contributed to microscope hardware setup, Qt interface updates and technical documentation.",
+    tools: ["Python", "ImageJ", "3D imaging", "Qt"],
+  },
+];
+
+const teachingCourses = [
+  { symbol: "∫", name: "Analyse B", field: "Mathematics" },
+  { symbol: "↗", name: "Géométrie analytique", field: "CMS · Preparatory year" },
+  { symbol: "μC", name: "Microcontrôleurs", field: "Embedded systems" },
+  { symbol: "∿", name: "Électrotechnique I & II", field: "Electrical engineering" },
+];
+
+const dataProjects = [
+  ...roboticsProjects.filter((p) => p.title === "Coin Detection"),
+  ...biomedicalProjects.filter((p) => ["Human Preference Learning", "Predicting Movie Ratings"].includes(p.title)),
+];
+
+const sections = [
+  {
+    id: "robotics", number: "01", title: "Robotics & Engineering",
+    subtitle: "Control, perception, embedded systems and robot design.",
+    projects: roboticsProjects.filter((p) => p.title !== "Coin Detection"),
+    variant: "main", hideTitles: false,
+    note: "Some research and industry projects remain private. I’m happy to discuss the technical work.",
+  },
+  {
+    id: "data", number: "02", title: "Data & Machine Learning",
+    subtitle: "Computer vision, statistical analysis and learning from data.",
+    projects: dataProjects, variant: "compact", hideTitles: false,
     note: undefined,
-    variant: "compact",
-    hideTitles: true,
+  },
+  {
+    id: "biomedical", number: "03", title: "Biomedical & Scientific Computing",
+    subtitle: "Human movement, scientific imaging and biological data.",
+    projects: biomedicalProjects.filter((p) => !["Human Preference Learning", "Predicting Movie Ratings"].includes(p.title)),
+    variant: "main", hideTitles: false, note: undefined,
   },
 ];
 
@@ -216,7 +236,11 @@ const skills = [
   },
   {
     title: "Robotics & Control",
-    items: ["MuJoCo", "Gazebo", "MPC", "PD/PID Control", "Kinematics", "Motion Planning", "ROS 2 · introductory", "Simulation", "Benchmarking"],
+    items: ["MuJoCo", "Gazebo", "Linear & Nonlinear MPC", "State & Disturbance Estimation", "PD/PID Control", "Kinematics", "Motion Planning", "ROS 2 · introductory", "Simulation", "Benchmarking"],
+  },
+  {
+    title: "Optimization & Simulation",
+    items: ["CasADi", "IPOPT", "YALMIP", "MPT3", "Quadratic Programming", "Constrained Optimization", "MATLAB Optimization Toolbox"],
   },
   {
     title: "Machine Learning & Vision",
@@ -236,6 +260,7 @@ const education = [
   ["MSc Robotics, minor in Computational Biology", "EPFL · 2024 – present"],
   ["BSc Microengineering", "EPFL · 2020 – 2024"],
   ["Exchange year", "UPM Madrid · 2022 – 2023"],
+  ["CMS preparatory year", "EPFL · 2019 – 2020"],
 ];
 
 const languages = [
@@ -253,7 +278,7 @@ const languages = [
     <meta name="robots" content="noindex, nofollow" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Meriam Bouguecha — EPFL Robotics student looking for a master's thesis. Control, perception, embedded systems, manipulation and hands-on engineering projects." />
-    <title>Meriam Bouguecha | Robotics</title>
+    <title>Meriam Bouguecha | Engineering & Projects</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -266,10 +291,10 @@ const languages = [
     <header class="site-header">
       <a class="logo" href="#home" aria-label="Meriam Bouguecha, home">MB</a>
       <nav aria-label="Main navigation">
-        <a href="#robotics">Robotics</a>
-        <a href="#biomedical">Biomedical &amp; Data</a>
-        <a href="#skills">Skills</a>
         <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
         <a href="#contact">Contact</a>
       </nav>
     </header>
@@ -290,7 +315,7 @@ const languages = [
             and understanding what makes a robot work in practice.
           </p>
           <div class="hero-buttons">
-            <a class="button primary" href="#robotics">Explore my work</a>
+            <a class="button primary" href="#projects">Explore my work</a>
             <a class="button secondary" href="#about">A little about me</a>
             {cvUrl && <a class="button secondary" href={cvUrl} target="_blank" rel="noopener noreferrer">Download CV ↗</a>}
           </div>
@@ -305,136 +330,6 @@ const languages = [
           <p class="photo-caption">Dexterous manipulation</p>
         </div>
       </section>
-
-      <!-- WORK SECTIONS -->
-      {sections.map((section) => (
-        <section id={section.id} class:list={["section", "work-section", section.variant, section.hideTitles && "titles-hidden"]}>
-          <div class="section-heading">
-            <p class="section-num">{section.number}</p>
-            <h2>{section.title}</h2>
-            <p class="section-description">{section.subtitle}</p>
-          </div>
-
-          {section.featured && (
-            <article class="featured-card">
-              <div class="featured-main">
-                <div class="project-meta">
-                  <span>{section.featured.category}</span>
-                  <span class="period">{section.featured.period}</span>
-                </div>
-                <h3>{section.featured.title}</h3>
-                <p>{section.featured.intro}</p>
-                <div class="tags">
-                  {section.featured.tags.map((tag) => <span class="tag">{tag}</span>)}
-                </div>
-              </div>
-              <ul class="featured-points">
-                {section.featured.highlights.map((point) => <li>{point}</li>)}
-              </ul>
-            </article>
-          )}
-
-          <div data-carousel>
-            <div class="track-bar">
-              <p class="track-label">{section.trackLabel}</p>
-              <div class="carousel-actions">
-                <button class="carousel-arrow" type="button" data-direction="-1" aria-label={`Previous ${section.title} projects`}>←</button>
-                <button class="carousel-arrow" type="button" data-direction="1" aria-label={`Next ${section.title} projects`}>→</button>
-              </div>
-            </div>
-
-            <div class="project-track" tabindex="0" role="region" aria-label={`${section.title} projects`}>
-              {section.projects.map((project) => (
-                <article class:list={["project-card", project.video ? "has-video" : "text-only"]}>
-                  {project.video && (
-                    <div class="project-media">
-                      <video
-                        class="video-blur"
-                        src={project.video}
-                        muted
-                        loop
-                        playsinline
-                        preload="none"
-                        aria-hidden="true"
-                        tabindex="-1"
-                      ></video>
-                      <video
-                        class="video-main"
-                        src={project.video}
-                        muted
-                        loop
-                        playsinline
-                        controls
-                        preload="metadata"
-                        aria-label={`${project.title} video demonstration`}
-                      ></video>
-                    </div>
-                  )}
-
-                  {!project.video && project.focus && (
-                    <div class="project-cover">
-                      <p class="cover-label">At a glance</p>
-                      <ul class="cover-focus">
-                        {project.focus.map((item) => <li>{item}</li>)}
-                      </ul>
-                    </div>
-                  )}
-
-                  <div class="project-info">
-                    <div class="project-meta">
-                      <span>{project.category}</span>
-                      {project.period && <span class="period">{project.period}</span>}
-                    </div>
-                    <h3 class:list={[section.hideTitles && "sr-only"]}>{project.title}</h3>
-                    <p>{project.description}</p>
-                    {project.result && <p class="result">{project.result}</p>}
-                    {project.link && (
-                      <a class="card-link" href={project.link.href} target="_blank" rel="noopener noreferrer">{project.link.label}</a>
-                    )}
-                    <div class="tags">
-                      {project.tags.map((tag) => <span class="tag">{tag}</span>)}
-                    </div>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
-
-          {section.note && <p class="work-note">{section.note}</p>}
-        </section>
-      ))}
-
-      <!-- SKILLS -->
-      <section id="skills" class="section skills-section">
-        <div class="section-heading">
-          <h2>Things I work with</h2>
-          <p class="section-description">
-            Software, robotics, data and hardware tools from research, coursework and hands-on projects.
-          </p>
-        </div>
-        <div class="skills-list">
-          {skills.map((group) => (
-            <div class="skill-row">
-              <h3>{group.title}</h3>
-              <div class="tags">
-                {group.items.map((item) => <span class="tag">{item}</span>)}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <!--
-      FUTURE SECTION: THE LITTLE LAB
-      Uncomment when personal projects are ready.
-      Idea for a first entry: the video of the big robot arm exploring the space
-      around it to map its workspace ("/media/lab/workspace_exploration.mp4").
-
-      <section id="lab" class="section lab-section">
-        <h2>The little lab</h2>
-        <p>Personal robotics experiments, little robots and technical challenges.</p>
-      </section>
-      -->
 
       <!-- ABOUT -->
       <section id="about" class="section about-section">
@@ -489,13 +384,206 @@ const languages = [
           </p>
           <p>
             I’ve also been a teaching assistant at EPFL for several years, supporting
-            100+ students in microcontrollers, electrotechnics and mathematical analysis.
+            students in mathematics, microcontrollers and electrotechnics.
             Away from the lab I’m usually running, listening to far too much music, or
             helping out in student associations like the Xplore rover team. Every project
             I finish makes me a little more excited about this field.
           </p>
         </div>
       </section>
+
+      <!-- PROFESSIONAL EXPERIENCE -->
+      <section id="experience" class="section experience-section" aria-labelledby="experience-title">
+        <div class="experience-heading">
+          <p class="experience-kicker">Experience</p>
+          <h2 id="experience-title">In the lab.<br />In the classroom.</h2>
+          <p>Industry, research and teaching — bringing ideas into practice and sharing what I learn along the way.</p>
+          <a class="experience-jump" href="#teaching">Teaching at EPFL <span aria-hidden="true">↘</span></a>
+        </div>
+
+        <div class="experience-content">
+          <div class="career-timeline">
+            <article class="career-entry current-position">
+              <div class="career-date"><span>2026</span><span class="position-live"><i aria-hidden="true"></i>Present</span></div>
+              <div class="career-body">
+                <p class="career-role">Robotics R&amp;D Intern <span aria-hidden="true">/</span> Sonceboz</p>
+                <h3>{currentRole.title}</h3>
+                <p class="career-period">{currentRole.period}</p>
+                <p class="career-description">{currentRole.intro}</p>
+                <ul class="career-tools" aria-label="Tools and methods">
+                  {["MuJoCo", "MPC", "Reinforcement learning", "Imitation learning"].map((tool) => <li>{tool}</li>)}
+                </ul>
+              </div>
+            </article>
+            {researchExperience.map((position) => (
+              <article class="career-entry">
+                <div class="career-date"><span>{position.period === "2024" ? "2024" : "2025–26"}</span><span>Research</span></div>
+                <div class="career-body">
+                  <p class="career-role">{position.role} <span aria-hidden="true">/</span> {position.organisation}</p>
+                  <h3>{position.title}</h3>
+                  <p class="career-period">{position.period}</p>
+                  <p class="career-description">{position.description}</p>
+                  <ul class="career-tools" aria-label="Tools and methods">
+                    {position.tools.map((tool) => <li>{tool}</li>)}
+                  </ul>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <article id="teaching" class="teaching-feature" aria-labelledby="teaching-title">
+            <div class="teaching-topline">
+              <span class="teaching-place">EPFL <span aria-hidden="true">/</span> Lausanne, Switzerland</span>
+              <span class="teaching-years">2020 <span aria-hidden="true">—</span> 2025</span>
+            </div>
+            <div class="teaching-intro">
+              <div>
+                <p class="teaching-eyebrow">Teaching Assistant</p>
+                <h3 id="teaching-title">Mathematics &amp;<br /><em>engineering, explained.</em></h3>
+              </div>
+              <span class="teaching-mark" aria-hidden="true">↗</span>
+            </div>
+            <p class="teaching-summary">Exercise sessions, practical coursework and debugging support for 100+ students across mathematics and engineering courses.</p>
+            <div class="teaching-course-grid">
+              {teachingCourses.map((course) => (
+                <div class="teaching-course">
+                  <span class="course-symbol" aria-hidden="true">{course.symbol}</span>
+                  <div><span class="course-field">{course.field}</span><h4>{course.name}</h4></div>
+                </div>
+              ))}
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- PROJECTS -->
+      <section id="projects" class="projects-section" aria-labelledby="projects-title">
+        <div class="section projects-intro">
+          <h2 id="projects-title">Projects</h2>
+          <p class="section-description">A selection of work across robotics, engineering, data and biomedical research.</p>
+          <nav class="project-topics" aria-label="Project categories">
+            <a href="#robotics">Robotics &amp; Engineering</a>
+            <a href="#data">Data &amp; Machine Learning</a>
+            <a href="#biomedical">Biomedical &amp; Scientific Computing</a>
+          </nav>
+        </div>
+      {sections.map((section) => (
+        <section id={section.id} class:list={["section", "work-section", section.variant, section.hideTitles && "titles-hidden"]}>
+          <div class="section-heading">
+            <p class="section-num">{section.number}</p>
+            <h3 class="project-category-title">{section.title}</h3>
+            <p class="section-description">{section.subtitle}</p>
+          </div>
+
+          <div data-carousel>
+            <div class="track-bar">
+              <p class="track-label">{`${section.projects.length} projects`}</p>
+              <div class="carousel-actions">
+                <button class="carousel-arrow" type="button" data-direction="-1" aria-label={`Previous ${section.title} projects`}>←</button>
+                <button class="carousel-arrow" type="button" data-direction="1" aria-label={`Next ${section.title} projects`}>→</button>
+              </div>
+            </div>
+
+            <div class="project-track" tabindex="0" role="region" aria-label={`${section.title} projects`}>
+              {section.projects.map((project) => (
+                <article class:list={["project-card", project.video || project.image ? "has-media" : "text-only"]}>
+                  {project.video && (
+                    <div class="project-media">
+                      <video
+                        class="video-blur"
+                        src={project.video}
+                        muted
+                        loop
+                        playsinline
+                        preload="none"
+                        aria-hidden="true"
+                        tabindex="-1"
+                      ></video>
+                      <video
+                        class="video-main"
+                        src={project.video}
+                        muted
+                        loop
+                        playsinline
+                        controls
+                        preload="metadata"
+                        aria-label={`${project.title} video demonstration`}
+                      ></video>
+                    </div>
+                  )}
+
+                  {!project.video && project.image && (
+                    <div class="project-media image-media">
+                      <img src={project.image} alt={project.imageAlt || project.title} loading="lazy" decoding="async" />
+                    </div>
+                  )}
+
+                  {!project.video && !project.image && project.focus && (
+                    <div class="project-cover">
+                      <p class="cover-label">At a glance</p>
+                      <ul class="cover-focus">
+                        {project.focus.map((item) => <li>{item}</li>)}
+                      </ul>
+                    </div>
+                  )}
+
+                  <div class="project-info">
+                    <div class="project-meta">
+                      <span>{project.category}</span>
+                      {project.period && <span class="period">{project.period}</span>}
+                    </div>
+                    <h3 class:list={[section.hideTitles && "sr-only"]}>{project.title}</h3>
+                    <p>{project.description}</p>
+                    {project.result && <p class="result">{project.result}</p>}
+                    {project.link && (
+                      <a class="card-link" href={project.link.href} target="_blank" rel="noopener noreferrer">{project.link.label}</a>
+                    )}
+                    <div class="tags">
+                      {project.tags.map((tag) => <span class="tag">{tag}</span>)}
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          {section.note && <p class="work-note">{section.note}</p>}
+        </section>
+      ))}
+
+      </section>
+
+      <!-- SKILLS -->
+      <section id="skills" class="section skills-section">
+        <div class="section-heading">
+          <h2>Things I work with</h2>
+          <p class="section-description">
+            Software, robotics, data and hardware tools from research, coursework and hands-on projects.
+          </p>
+        </div>
+        <div class="skills-list">
+          {skills.map((group) => (
+            <div class="skill-row">
+              <h3>{group.title}</h3>
+              <div class="tags">
+                {group.items.map((item) => <span class="tag">{item}</span>)}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!--
+      FUTURE SECTION: THE LITTLE LAB
+      Uncomment when personal projects are ready.
+      Idea for a first entry: the video of the big robot arm exploring the space
+      around it to map its workspace ("/media/lab/workspace_exploration.mp4").
+
+      <section id="lab" class="section lab-section">
+        <h2>The little lab</h2>
+        <p>Personal robotics experiments, little robots and technical challenges.</p>
+      </section>
+      -->
 
       <!-- CONTACT -->
       <section id="contact" class="contact-section">
@@ -761,59 +849,6 @@ const languages = [
   .work-section.main { border-top: 1px solid var(--line); }
   .work-section.compact { background: var(--sand); }
 
-  /* featured card */
-  .featured-card {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: 24px;
-    margin-bottom: 52px;
-    padding: 40px;
-    background: var(--navy);
-    color: var(--cream);
-    border-radius: 18px;
-  }
-  .featured-main { min-width: 0; }
-  .featured-main h3 {
-    font-size: clamp(26px, 3vw, 34px);
-    letter-spacing: -0.025em;
-    margin-bottom: 14px;
-    color: var(--cream);
-  }
-  .featured-main > p { color: rgba(250, 247, 243, 0.8); font-size: 16px; max-width: none; }
-  .featured-card .project-meta { color: var(--accent-light); }
-  .featured-card .project-meta .period { color: rgba(250, 247, 243, 0.6); }
-  .featured-points {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 24px;
-  }
-  .featured-points li {
-    position: relative;
-    padding: 16px 0 16px 26px;
-    border-top: 1px solid rgba(250, 247, 243, 0.16);
-    border-bottom: 1px solid rgba(250, 247, 243, 0.16);
-    font-size: 15px;
-    color: rgba(250, 247, 243, 0.88);
-  }
-  .featured-points li::before {
-    content: "";
-    position: absolute;
-    left: 2px;
-    top: 26px;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--accent-light);
-  }
-  .featured-card .tag {
-    background: rgba(250, 247, 243, 0.08);
-    border-color: rgba(250, 247, 243, 0.16);
-    color: rgba(250, 247, 243, 0.88);
-  }
-
   /* carousel */
   .track-bar {
     display: flex;
@@ -1067,8 +1102,6 @@ const languages = [
   @media (max-width: 900px) {
     .hero { gap: 36px; }
     .about-section { gap: 40px; }
-    .featured-card { grid-template-columns: 1fr; gap: 24px; padding: 32px; }
-    .featured-points { grid-template-columns: 1fr; gap: 0; }
   }
   @media (max-width: 700px) {
     .site-header { position: static; flex-direction: column; gap: 14px; padding: 18px 5%; }
@@ -1080,7 +1113,6 @@ const languages = [
     .section { padding: 64px 6%; }
     .contact-section { padding: 72px 6%; }
     footer { padding: 24px 6%; }
-    .featured-card { padding: 26px 22px; }
     .project-card, .compact .project-card { flex-basis: min(84vw, 360px); }
     .project-media, .project-cover { height: 225px; flex-basis: 225px; }
     .project-meta { flex-wrap: wrap; }
@@ -1093,4 +1125,85 @@ const languages = [
     :global(html) { scroll-behavior: auto; }
     .project-card, .button, .carousel-arrow, .logo { transition: none; }
   }
+
+  .projects-intro { padding-bottom: 32px; }
+  .project-topics { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; justify-content: flex-start; }
+  .project-topics a { border: 1px solid var(--line); background: var(--paper); border-radius: 30px; padding: 9px 15px; font-size: 13px; font-weight: 600; }
+  .project-topics a:hover { border-color: var(--accent); color: var(--accent-text); }
+  .project-category-title { font-size: clamp(26px, 3vw, 36px); margin-bottom: 12px; }
+  .image-media img { width: 100%; height: 100%; display: block; object-fit: contain; }
+
+  /* Experience: editorial timeline, without project covers or placeholder images. */
+  .experience-section { display: grid; grid-template-columns: minmax(220px, .7fr) minmax(0, 1.5fr); gap: clamp(36px, 6vw, 88px); border-top: 1px solid var(--line); background: var(--cream); }
+  .experience-heading { align-self: start; position: sticky; top: 110px; }
+  .experience-kicker { color: var(--accent-text); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .16em; margin-bottom: 20px; }
+  .experience-heading h2 { font-size: clamp(32px, 3.5vw, 48px); line-height: 1.08; margin-bottom: 22px; }
+  .experience-heading > p:not(.experience-kicker) { color: var(--ink-soft); max-width: 285px; font-size: 16px; }
+  .experience-jump { display: inline-flex; align-items: center; gap: 24px; padding: 12px 0; margin-top: 12px; border-bottom: 1px solid var(--accent-light); color: var(--accent-text); font-size: 13px; font-weight: 700; }
+  .experience-jump span { font-size: 22px; }
+  .experience-content { min-width: 0; }
+  .career-entry { display: grid; grid-template-columns: 84px minmax(0, 1fr); gap: 24px; }
+  .career-date { display: flex; flex-direction: column; gap: 7px; padding-top: 4px; color: var(--ink-soft); font-size: 11px; line-height: 1.4; }
+  .career-date > span:first-child { font-weight: 700; font-size: 14px; color: var(--ink); }
+  .position-live { display: inline-flex; align-items: center; gap: 5px; }
+  .position-live i { width: 5px; height: 5px; border-radius: 50%; background: #497b58; }
+  .career-body { position: relative; padding: 0 0 40px 27px; border-left: 1px solid #dcd3c9; }
+  .career-body::before { content: ''; position: absolute; width: 7px; height: 7px; top: 8px; left: -4px; border-radius: 50%; background: var(--cream); border: 1px solid var(--accent); }
+  .current-position .career-body::before { background: var(--accent); box-shadow: 0 0 0 5px #b4574f12; }
+  .career-role { display: flex; flex-wrap: wrap; align-items: center; column-gap: 8px; margin-bottom: 10px; color: var(--accent-text); font-size: 12px; font-weight: 700; }
+  .career-role > span { font-weight: 400; opacity: .5; }
+  .career-body h3 { margin-bottom: 7px; font-size: clamp(21px, 2vw, 26px); line-height: 1.2; }
+  .career-period { margin-bottom: 14px; font-size: 12px; color: var(--ink-soft); }
+  .career-description { font-size: 14px; color: var(--ink-soft); line-height: 1.7; margin-bottom: 18px; }
+  .career-tools { list-style: none; display: flex; flex-wrap: wrap; gap: 6px 15px; padding: 0; margin: 0; }
+  .career-tools li { color: var(--ink); font-size: 11px; font-weight: 600; }
+  .career-tools li:not(:last-child)::after { content: '·'; color: var(--accent); margin-left: 15px; }
+  .career-entry:last-child .career-body { padding-bottom: 20px; }
+
+  /* Teaching is a designed feature, not another generic resume card. */
+  .teaching-feature { position: relative; overflow: hidden; isolation: isolate; margin-top: 28px; padding: clamp(25px, 3.4vw, 44px); border-radius: 18px; background: var(--navy); color: var(--cream); }
+  .teaching-feature::before { content: ''; position: absolute; z-index: -1; width: 260px; height: 260px; border: 1px solid #faf7f30c; border-radius: 50%; right: -130px; top: -130px; box-shadow: 0 0 0 45px #faf7f304, 0 0 0 90px #faf7f303; }
+  .teaching-topline { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; padding-bottom: 22px; border-bottom: 1px solid #faf7f328; }
+  .teaching-place { font-size: 11px; font-weight: 600; letter-spacing: .02em; color: #f3e8df; }
+  .teaching-place > span { color: var(--accent-light); padding: 0 7px; }
+  .teaching-years { font-size: 13px; font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .teaching-years > span { color: var(--accent-light); padding: 0 5px; }
+  .teaching-intro { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 27px; }
+  .teaching-eyebrow { font-size: 10px; letter-spacing: .13em; text-transform: uppercase; color: var(--accent-light); font-weight: 700; margin-bottom: 14px; }
+  .teaching-intro h3 { font-size: clamp(26px, 2.9vw, 39px); line-height: 1.12; letter-spacing: -.025em; color: var(--cream); margin-bottom: 0; }
+  .teaching-intro h3 em { font-style: normal; color: #e8b6a9; }
+  .teaching-mark { flex-shrink: 0; font-size: 44px; font-weight: 400; line-height: 1; color: #e8b6a9; opacity: .8; }
+  .teaching-summary { margin: 19px 0 27px; color: #e4dfd8; font-size: 13px; line-height: 1.7; max-width: 450px; }
+  .teaching-course-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid #faf7f328; }
+  .teaching-course { display: flex; align-items: center; gap: 14px; padding: 23px 10px 23px 0; border-bottom: 1px solid #faf7f328; }
+  .teaching-course:nth-child(even) { padding-left: 16px; border-left: 1px solid #faf7f328; }
+  .course-symbol { font-family: Georgia, serif; font-size: 25px; color: #e8b6a9; display: grid; place-items: center; width: 34px; flex-shrink: 0; }
+  .course-field { display: block; margin-bottom: 6px; font-size: 9px; letter-spacing: .06em; color: #b9b8bd; text-transform: uppercase; }
+  .teaching-course h4 { font-family: "Figtree", Arial, sans-serif; font-weight: 600; font-size: 13px; color: var(--cream); line-height: 1.35; margin: 0; }
+
+  @media (max-width: 1000px) {
+    .experience-section { grid-template-columns: minmax(200px, .6fr) minmax(0, 1.4fr); gap: 34px; }
+    .career-entry { grid-template-columns: 65px minmax(0,1fr); gap: 14px; }
+    .career-body { padding-left: 22px; }
+    .teaching-intro h3 { font-size: 29px; }
+    .teaching-mark { display: none; }
+  }
+  @media (max-width: 760px) {
+    .experience-section { grid-template-columns: 1fr; gap: 38px; }
+    .experience-heading { position: static; }
+    .experience-heading > p:not(.experience-kicker) { max-width: 440px; }
+    .experience-heading h2 { max-width: 450px; }
+    .experience-jump { margin-top: 0; }
+    .career-entry { grid-template-columns: 65px minmax(0,1fr); gap: 12px; }
+    .career-body { padding-left: 20px; padding-bottom: 32px; }
+    .career-date > span:first-child { font-size: 12px; }
+    .teaching-feature { margin-top: 20px; }
+  }
+  @media (max-width: 420px) {
+    .teaching-course-grid { grid-template-columns: 1fr; }
+    .teaching-course:nth-child(even) { border-left: 0; padding-left: 0; }
+    .teaching-intro h3 { font-size: 28px; }
+    .teaching-topline { align-items: flex-start; }
+  }
+
 </style>
