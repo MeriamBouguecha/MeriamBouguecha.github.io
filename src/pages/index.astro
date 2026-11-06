@@ -35,7 +35,7 @@ const currentRole = {
     "Defining benchmark tasks, success metrics and repeatable test conditions",
     "Assessing how tactile, proprioceptive and visual feedback can support manipulation policies",
   ],
-  tags: ["MuJoCo", "Classical Control", "MPC", "RL", "Imitation Learning", "ACT", "Diffusion Policies", "VLA", "Python"],
+  tags: ["MuJoCo", "Classical Control", "MPC", "RL", "Imitation Learning", "ACT", "Diffusion Policies", "VLA", "Stable-Baselines3", "CUDA", "Python"],
 };
 
 /* ---------- 01 · Robotics & Engineering ---------- */
@@ -127,13 +127,13 @@ const roboticsProjects: Project[] = [
 const biomedicalProjects: Project[] = [
   {
     title: "3D Gait Analysis",
-    focus: ["3D movement features", "Cadence & asymmetry", "Visual scoring framework"],
-    category: "Human movement analysis, REHAssist Lab",
+    focus: ["Movement synergies · NNMF & PCA", "Cadence & asymmetry", "Visual scoring framework"],
+    category: "Data analysis & human movement, REHAssist Lab",
     period: "2025",
     description:
-      "Built a 3D gait-analysis pipeline with preprocessing, temporal feature extraction and joint-motion analysis. Designed a detailed scoring framework to make possible sources of gait abnormalities easier to inspect visually, such as cadence, asymmetries, timing and movement amplitude, rather than reducing the assessment to a single overall score.",
+      "A data analysis project exploring 3D gait patterns through preprocessing, temporal feature extraction and joint-motion analysis. Investigated movement synergies using non-negative matrix factorization (NNMF) and principal component analysis (PCA). Built a visual scoring framework to inspect cadence, asymmetries, timing and movement amplitude, making possible sources of gait abnormalities easier to interpret.",
     result: "81.7% accuracy, healthy vs post-stroke gait",
-    tags: ["Python", "Feature Extraction", "Classification"],
+    tags: ["Python", "Data Analysis", "NNMF", "PCA", "Feature Extraction", "Classification"],
   },
   {
     title: "Optical Instrumentation",
@@ -176,30 +176,31 @@ const biomedicalProjects: Project[] = [
   },
 ];
 
-const researchExperience = [
+const otherExperience = [
   {
     period: "Sep 2025 – Apr 2026",
-    organisation: "LISP Lab",
     role: "Research Assistant",
+    organisation: "LISP Lab, EPFL",
     title: "Biological data analysis",
     description: "Analyzed biological datasets, including RNA sequencing data, in R. Built reproducible preprocessing, quality-control and statistical workflows, with structured databases to keep analyses and results traceable.",
     tools: ["R", "RNA sequencing", "Statistics", "Reproducible workflows"],
   },
   {
     period: "2024",
-    organisation: "Living Patterns Lab",
     role: "Research Assistant",
-    title: "3D microscopy & image analysis",
-    description: "Processed 3D microscopy data in Python and ImageJ for volumetric analysis, feature extraction and quality control. Also contributed to microscope hardware setup, Qt interface updates and technical documentation.",
-    tools: ["Python", "ImageJ", "3D imaging", "Qt"],
+    organisation: "Living Patterns Lab (LPL), EPFL",
+    title: "3D reconstruction, microscopy & mechanical work",
+    description: "Processed 3D microscopy data in Python and ImageJ for volumetric analysis, feature extraction and quality control. Worked on 3D point-cloud reconstructions and contributed to mechanical work and microscope hardware setup, alongside Qt interface updates and technical documentation.",
+    tools: ["Python", "ImageJ", "3D point-cloud reconstruction", "Mechanical work", "Qt"],
   },
-];
-
-const teachingCourses = [
-  { symbol: "∫", name: "Analyse B", field: "Mathematics" },
-  { symbol: "↗", name: "Géométrie analytique", field: "CMS · Preparatory year" },
-  { symbol: "μC", name: "Microcontrôleurs", field: "Embedded systems" },
-  { symbol: "∿", name: "Électrotechnique I & II", field: "Electrical engineering" },
+  {
+    period: "2020 – 2025",
+    role: "Teaching Assistant",
+    organisation: "EPFL",
+    title: "Microcontrollers, electrotechnics and mathematics",
+    description: "Guided exercise and lab sessions for 100+ students. In electronics, helped students debug circuits and components; in the microcontrollers course, supported AVR assembly work, interrupts and timers, and serial communication.",
+    tools: ["Electronics debugging", "AVR assembly", "Interrupts & timers", "UART / I2C", "Électrotechnique I & II", "Analyse B", "Géométrie analytique"],
+  },
 ];
 
 const dataProjects = [
@@ -231,28 +232,28 @@ const sections = [
 
 const skills = [
   {
-    title: "Programming & Software",
-    items: ["Python", "C", "C++", "JavaScript", "MATLAB", "R", "Git", "Linux", "Docker", "Jupyter", "CMake", "Qt"],
-  },
-  {
     title: "Robotics & Control",
-    items: ["MuJoCo", "Gazebo", "Linear & Nonlinear MPC", "State & Disturbance Estimation", "PD/PID Control", "Kinematics", "Motion Planning", "ROS 2 · introductory", "Simulation", "Benchmarking"],
+    items: ["PD/PID Control", "Linear & Nonlinear MPC", "Kinematics", "Motion Planning", "State & Disturbance Estimation", "Kalman Filter", "Sensor Fusion", "Impedance Control", "Benchmarking"],
   },
   {
-    title: "Optimization & Simulation",
-    items: ["CasADi", "IPOPT", "YALMIP", "MPT3", "Quadratic Programming", "Constrained Optimization", "MATLAB Optimization Toolbox"],
+    title: "Simulation & Optimization",
+    items: ["MuJoCo", "Gazebo", "ROS 2 · introductory", "CasADi", "IPOPT", "YALMIP", "MPT3", "Quadratic Programming", "Constrained Optimization"],
   },
   {
     title: "Machine Learning & Vision",
-    items: ["PyTorch", "scikit-learn", "OpenCV", "ImageJ", "Image Processing", "Feature Extraction", "Classification", "RL"],
+    items: ["PyTorch", "Stable-Baselines3", "Reinforcement Learning", "Imitation Learning", "scikit-learn", "OpenCV", "Open3D", "3D Point Clouds", "Image Processing", "ImageJ", "Feature Extraction", "Classification"],
   },
   {
     title: "Embedded & Hardware",
-    items: ["STM32", "BeagleBone", "Arduino", "CAN", "UART", "I2C", "SPI", "IMU", "Altium", "LabVIEW", "CATIA · coursework"],
+    items: ["STM32", "BeagleBone", "Arduino", "AVR assembly", "CAN", "UART", "I2C", "SPI", "IMU", "Altium", "LabVIEW", "Circuit debugging", "CATIA · coursework"],
   },
   {
-    title: "Data & Experimentation",
-    items: ["Data Preprocessing", "Statistics", "Sensor Fusion", "Filtering", "Kalman Filter", "Calibration", "Testing", "Quality Control"],
+    title: "Programming & Software",
+    items: ["Python", "C", "C++", "MATLAB", "CUDA", "R", "JavaScript", "Git", "Linux", "Docker", "Jupyter", "CMake", "Qt"],
+  },
+  {
+    title: "Data & Signal Processing",
+    items: ["Data Preprocessing", "Statistics", "PCA", "NNMF", "Signal Processing", "Filtering", "Calibration", "Testing", "Quality Control"],
   },
 ];
 
@@ -350,109 +351,67 @@ const languages = [
                 </li>
               ))}
             </ul>
-
-            <h3>Languages</h3>
-            <div class="language-grid">
-              {languages.map(([language, level]) => (
-                <div class="language-item">
-                  <strong>{language}</strong>
-                  <span>{level}</span>
-                </div>
-              ))}
-            </div>
-
-            <h3>Outside the lab</h3>
-            <div class="tags">
-              <span class="tag">Running</span>
-              <span class="tag">Music</span>
-              <span class="tag">Student associations</span>
-            </div>
           </div>
         </div>
 
         <div class="about-content">
           <h2>Hands-on, always.</h2>
           <p>
-            I’m a Robotics Master’s student at EPFL, with a Bachelor’s degree in
-            Microengineering and a minor in Computational Biology.
+            I learn best by building things that have to work: a PCB that talks over
+            CAN, a controller that runs in real time on an embedded board, a model that
+            holds up on data it has never seen.
           </p>
           <p>
-            I like the place where software meets hardware: control algorithms,
-            sensors, embedded boards, and learning methods that have to survive contact
-            with a real robot. I’m happiest when an idea leaves the simulation and starts
-            moving something real.
+            Away from the screen I run, listen to far too much music, and get involved
+            in student life: the Xplore rover team, TEDx Ecublens, ESN EPFL and TUNES.
+            Five languages so far, with German still a work in progress.
           </p>
-          <p>
-            I’ve also been a teaching assistant at EPFL for several years, supporting
-            students in mathematics, microcontrollers and electrotechnics.
-            Away from the lab I’m usually running, listening to far too much music, or
-            helping out in student associations like the Xplore rover team. Every project
-            I finish makes me a little more excited about this field.
-          </p>
+          <div class="about-languages">
+            <h3>Languages</h3>
+            <div class="tags">
+              {languages.map(([language, level]) => (
+                <span class="tag"><strong>{language}</strong> {level}</span>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
-      <!-- PROFESSIONAL EXPERIENCE -->
+      <!-- EXPERIENCE -->
       <section id="experience" class="section experience-section" aria-labelledby="experience-title">
-        <div class="experience-heading">
-          <p class="experience-kicker">Experience</p>
-          <h2 id="experience-title">In the lab.<br />In the classroom.</h2>
-          <p>Industry, research and teaching — bringing ideas into practice and sharing what I learn along the way.</p>
-          <a class="experience-jump" href="#teaching">Teaching at EPFL <span aria-hidden="true">↘</span></a>
+        <div class="section-heading">
+          <h2 id="experience-title">Experience</h2>
         </div>
 
-        <div class="experience-content">
-          <div class="career-timeline">
-            <article class="career-entry current-position">
-              <div class="career-date"><span>2026</span><span class="position-live"><i aria-hidden="true"></i>Present</span></div>
-              <div class="career-body">
-                <p class="career-role">Robotics R&amp;D Intern <span aria-hidden="true">/</span> Sonceboz</p>
-                <h3>{currentRole.title}</h3>
-                <p class="career-period">{currentRole.period}</p>
-                <p class="career-description">{currentRole.intro}</p>
-                <ul class="career-tools" aria-label="Tools and methods">
-                  {["MuJoCo", "MPC", "Reinforcement learning", "Imitation learning"].map((tool) => <li>{tool}</li>)}
-                </ul>
+        <article class="xp-lead">
+          <div class="xp-lead-main">
+            <p class="xp-lead-role">{currentRole.category} <span>/ {currentRole.period}</span></p>
+            <h3>{currentRole.title}</h3>
+            <p>{currentRole.intro}</p>
+            <div class="tags">
+              {currentRole.tags.map((tag) => <span class="tag">{tag}</span>)}
+            </div>
+          </div>
+          <ul class="xp-lead-points">
+            {currentRole.highlights.map((point) => <li>{point}</li>)}
+          </ul>
+        </article>
+
+        <h3 class="xp-subhead">Research and teaching</h3>
+        <div class="xp-list">
+          {otherExperience.map((item) => (
+            <article class="xp-row">
+              <p class="xp-date">{item.period}</p>
+              <div class="xp-body">
+                <p class="xp-role">{item.role} <span>/ {item.organisation}</span></p>
+                <h4>{item.title}</h4>
+                <p class="xp-desc">{item.description}</p>
+                <div class="tags">
+                  {item.tools.map((tool) => <span class="tag">{tool}</span>)}
+                </div>
               </div>
             </article>
-            {researchExperience.map((position) => (
-              <article class="career-entry">
-                <div class="career-date"><span>{position.period === "2024" ? "2024" : "2025–26"}</span><span>Research</span></div>
-                <div class="career-body">
-                  <p class="career-role">{position.role} <span aria-hidden="true">/</span> {position.organisation}</p>
-                  <h3>{position.title}</h3>
-                  <p class="career-period">{position.period}</p>
-                  <p class="career-description">{position.description}</p>
-                  <ul class="career-tools" aria-label="Tools and methods">
-                    {position.tools.map((tool) => <li>{tool}</li>)}
-                  </ul>
-                </div>
-              </article>
-            ))}
-          </div>
-
-          <article id="teaching" class="teaching-feature" aria-labelledby="teaching-title">
-            <div class="teaching-topline">
-              <span class="teaching-place">EPFL <span aria-hidden="true">/</span> Lausanne, Switzerland</span>
-              <span class="teaching-years">2020 <span aria-hidden="true">—</span> 2025</span>
-            </div>
-            <div class="teaching-intro">
-              <div>
-                <p class="teaching-eyebrow">Teaching Assistant</p>
-                <h3 id="teaching-title">Mathematics &amp;<br /><em>engineering, explained.</em></h3>
-              </div>
-              <span class="teaching-mark" aria-hidden="true">↗</span>
-            </div>
-            <p class="teaching-summary">Exercise sessions, practical coursework and debugging support for 100+ students across mathematics and engineering courses.</p>
-            <div class="teaching-course-grid">
-              {teachingCourses.map((course) => (
-                <div class="teaching-course">
-                  <span class="course-symbol" aria-hidden="true">{course.symbol}</span>
-                  <div><span class="course-field">{course.field}</span><h4>{course.name}</h4></div>
-                </div>
-              ))}
-            </div>
-          </article>
+          ))}
         </div>
       </section>
 
@@ -461,23 +420,15 @@ const languages = [
         <div class="section projects-intro">
           <h2 id="projects-title">Projects</h2>
           <p class="section-description">A selection of work across robotics, engineering, data and biomedical research.</p>
-          <nav class="project-topics" aria-label="Project categories">
-            <a href="#robotics">Robotics &amp; Engineering</a>
-            <a href="#data">Data &amp; Machine Learning</a>
-            <a href="#biomedical">Biomedical &amp; Scientific Computing</a>
-          </nav>
         </div>
       {sections.map((section) => (
         <section id={section.id} class:list={["section", "work-section", section.variant, section.hideTitles && "titles-hidden"]}>
-          <div class="section-heading">
-            <p class="section-num">{section.number}</p>
-            <h3 class="project-category-title">{section.title}</h3>
-            <p class="section-description">{section.subtitle}</p>
-          </div>
-
           <div data-carousel>
-            <div class="track-bar">
-              <p class="track-label">{`${section.projects.length} projects`}</p>
+            <div class="group-head">
+              <div>
+                <h3 class="project-category-title">{section.title}</h3>
+                <p class="section-description">{section.subtitle}</p>
+              </div>
               <div class="carousel-actions">
                 <button class="carousel-arrow" type="button" data-direction="-1" aria-label={`Previous ${section.title} projects`}>←</button>
                 <button class="carousel-arrow" type="button" data-direction="1" aria-label={`Next ${section.title} projects`}>→</button>
@@ -588,10 +539,11 @@ const languages = [
       <!-- CONTACT -->
       <section id="contact" class="contact-section">
         <div class="contact-inner">
-          <h2>Looking for a master’s thesis in robotics.</h2>
-          <p>
-            If you’re building robots that work in the real world, I’d love to chat.
-          </p>
+          <div class="contact-text">
+            <h2>Looking for a master’s thesis in robotics.</h2>
+            <p>Building robots for the real world? Let’s talk.</p>
+          </div>
+          <div class="contact-actions">
           <div class="hero-buttons">
             <a class="button primary" href={`mailto:${emailMain}`}>Email me</a>
             <a class="button ghost" href="https://www.linkedin.com/in/meriam-bouguecha/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
@@ -603,6 +555,7 @@ const languages = [
             <span aria-hidden="true">·</span>
             <a href={`mailto:${emailSecondary}`}>{emailSecondary}</a>
           </p>
+          </div>
         </div>
       </section>
     </main>
@@ -780,7 +733,7 @@ const languages = [
     grid-template-columns: 1.1fr 0.9fr;
     align-items: center;
     gap: 64px;
-    padding: 80px var(--gutter) 100px;
+    padding: 64px var(--gutter) 80px;
   }
   .hero-content { max-width: 680px; }
   .status {
@@ -837,7 +790,7 @@ const languages = [
   }
 
   /* ---------- sections ---------- */
-  .section { padding: 88px var(--gutter); }
+  .section { padding: 72px var(--gutter); }
   .section-heading { margin-bottom: 36px; }
   .section-num {
     margin-bottom: 8px;
@@ -846,8 +799,7 @@ const languages = [
     color: var(--accent-text);
   }
   .section-description { color: var(--ink-soft); max-width: 580px; font-size: 16px; margin-bottom: 0; }
-  .work-section.main { border-top: 1px solid var(--line); }
-  .work-section.compact { background: var(--sand); }
+  .work-section + .work-section { border-top: 1px solid var(--line); }
 
   /* carousel */
   .track-bar {
@@ -1012,6 +964,7 @@ const languages = [
 
   /* ---------- skills ---------- */
   .skills-section { border-top: 1px solid var(--line); }
+  .skills-section .section-description { max-width: none; }
   .skills-list { border-bottom: 1px solid rgba(31, 37, 51, 0.12); }
   .skill-row {
     display: grid;
@@ -1027,9 +980,9 @@ const languages = [
   /* ---------- about ---------- */
   .about-section {
     display: grid;
-    grid-template-columns: .85fr 1.15fr;
-    align-items: start;
-    gap: 80px;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+    align-items: stretch;
+    gap: 56px;
     background: var(--sand);
   }
   .about-side { display: grid; gap: 28px; }
@@ -1046,10 +999,12 @@ const languages = [
     border-radius: 8px;
   }
   .glance {
+    display: flex;
+    flex-direction: column;
     background: var(--paper);
     border: 1px solid var(--line);
     border-radius: 16px;
-    padding: 28px;
+    padding: 32px;
   }
   .glance h3 {
     font-size: 15px;
@@ -1057,32 +1012,45 @@ const languages = [
     color: var(--accent-text);
   }
   .glance h3:first-child { margin-top: 0; }
-  .glance-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
-  .glance-list li { display: grid; font-size: 14px; line-height: 1.45; }
-  .glance-list span { color: var(--ink-soft); font-size: 13px; }
+  .glance-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 20px; flex: 1; align-content: space-between; }
+  .glance-list li { display: grid; font-size: 15px; line-height: 1.45; gap: 3px; }
+  .glance-list span { color: var(--ink-soft); font-size: 14px; }
   .glance .tags { padding-top: 0; margin-top: 0; }
   .glance .tag { background: var(--tint); }
   .language-grid { display: grid; gap: 8px; }
   .language-item { display: flex; justify-content: space-between; gap: 12px; font-size: 14px; }
   .language-item span { color: var(--ink-soft); }
+  .about-content h2 { margin-bottom: 20px; }
+  .about-languages { margin-top: 30px; padding-top: 24px; border-top: 1px solid rgba(31, 37, 51, 0.12); max-width: 600px; }
+  .about-languages h3 { margin: 0 0 12px; font-size: 15px; color: var(--accent-text); }
+  .about-languages .tags { margin-top: 0; padding-top: 0; }
+  .about-languages .tag { background: var(--paper); font-weight: 400; color: var(--ink-soft); }
+  .about-languages .tag strong { margin-right: 4px; font-weight: 700; color: var(--ink); }
   .about-content > p { color: #4a5363; font-size: 17px; max-width: 600px; }
 
   /* ---------- contact ---------- */
   .contact-section {
     background: var(--navy);
     color: var(--cream);
-    padding: 96px var(--gutter);
+    padding: 40px var(--gutter);
   }
-  .contact-inner { max-width: 720px; }
-  .contact-section h2 { color: var(--cream); }
-  .contact-section p { color: rgba(250, 247, 243, 0.78); font-size: 18px; }
-  .contact-section .hero-buttons { margin-top: 28px; }
+  .contact-inner {
+    display: grid;
+    grid-template-columns: .85fr 1.15fr;
+    gap: 24px 80px;
+    align-items: center;
+  }
+  .contact-actions .hero-buttons { margin-top: 0; }
+  .contact-section h2 { color: var(--cream); font-size: clamp(26px, 2.8vw, 34px); margin-bottom: 10px; }
+  .contact-section p { color: rgba(250, 247, 243, 0.78); font-size: 16px; margin-bottom: 0; }
+  .contact-section .hero-buttons { margin-top: 18px; gap: 10px; }
+  .contact-section .button { padding: 10px 18px; }
   .contact-emails {
     display: flex;
     flex-wrap: wrap;
     gap: 6px 12px;
-    margin: 28px 0 0;
-    font-size: 15px !important;
+    margin: 16px 0 0;
+    font-size: 14px !important;
   }
   .contact-emails a { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(250, 247, 243, 0.35); }
   .contact-emails a:hover { text-decoration-color: var(--accent-light); }
@@ -1102,6 +1070,7 @@ const languages = [
   @media (max-width: 900px) {
     .hero { gap: 36px; }
     .about-section { gap: 40px; }
+    .contact-inner { gap: 24px 40px; }
   }
   @media (max-width: 700px) {
     .site-header { position: static; flex-direction: column; gap: 14px; padding: 18px 5%; }
@@ -1111,7 +1080,10 @@ const languages = [
     .hero-visual { max-width: 440px; }
     .hero-visual img { height: 350px; }
     .section { padding: 64px 6%; }
-    .contact-section { padding: 72px 6%; }
+    .contact-section { padding: 32px 6%; }
+    .contact-inner { grid-template-columns: 1fr; gap: 20px; }
+    .contact-emails span { display: none; }
+    .contact-emails { flex-direction: column; gap: 6px; }
     footer { padding: 24px 6%; }
     .project-card, .compact .project-card { flex-basis: min(84vw, 360px); }
     .project-media, .project-cover { height: 225px; flex-basis: 225px; }
@@ -1126,84 +1098,82 @@ const languages = [
     .project-card, .button, .carousel-arrow, .logo { transition: none; }
   }
 
-  .projects-intro { padding-bottom: 32px; }
-  .project-topics { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; justify-content: flex-start; }
-  .project-topics a { border: 1px solid var(--line); background: var(--paper); border-radius: 30px; padding: 9px 15px; font-size: 13px; font-weight: 600; }
-  .project-topics a:hover { border-color: var(--accent); color: var(--accent-text); }
-  .project-category-title { font-size: clamp(26px, 3vw, 36px); margin-bottom: 12px; }
+  .projects-intro { padding-top: 0; padding-bottom: 0; }
+  .work-section { padding-top: 44px; padding-bottom: 44px; }
+  .work-section:last-of-type { padding-bottom: 72px; }
+  .group-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 22px; }
+  .group-head .section-description { font-size: 15px; }
+  .project-category-title { font-size: clamp(22px, 2.4vw, 28px); margin-bottom: 6px; }
   .image-media img { width: 100%; height: 100%; display: block; object-fit: contain; }
 
-  /* Experience: editorial timeline, without project covers or placeholder images. */
-  .experience-section { display: grid; grid-template-columns: minmax(220px, .7fr) minmax(0, 1.5fr); gap: clamp(36px, 6vw, 88px); border-top: 1px solid var(--line); background: var(--cream); }
-  .experience-heading { align-self: start; position: sticky; top: 110px; }
-  .experience-kicker { color: var(--accent-text); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .16em; margin-bottom: 20px; }
-  .experience-heading h2 { font-size: clamp(32px, 3.5vw, 48px); line-height: 1.08; margin-bottom: 22px; }
-  .experience-heading > p:not(.experience-kicker) { color: var(--ink-soft); max-width: 285px; font-size: 16px; }
-  .experience-jump { display: inline-flex; align-items: center; gap: 24px; padding: 12px 0; margin-top: 12px; border-bottom: 1px solid var(--accent-light); color: var(--accent-text); font-size: 13px; font-weight: 700; }
-  .experience-jump span { font-size: 22px; }
-  .experience-content { min-width: 0; }
-  .career-entry { display: grid; grid-template-columns: 84px minmax(0, 1fr); gap: 24px; }
-  .career-date { display: flex; flex-direction: column; gap: 7px; padding-top: 4px; color: var(--ink-soft); font-size: 11px; line-height: 1.4; }
-  .career-date > span:first-child { font-weight: 700; font-size: 14px; color: var(--ink); }
-  .position-live { display: inline-flex; align-items: center; gap: 5px; }
-  .position-live i { width: 5px; height: 5px; border-radius: 50%; background: #497b58; }
-  .career-body { position: relative; padding: 0 0 40px 27px; border-left: 1px solid #dcd3c9; }
-  .career-body::before { content: ''; position: absolute; width: 7px; height: 7px; top: 8px; left: -4px; border-radius: 50%; background: var(--cream); border: 1px solid var(--accent); }
-  .current-position .career-body::before { background: var(--accent); box-shadow: 0 0 0 5px #b4574f12; }
-  .career-role { display: flex; flex-wrap: wrap; align-items: center; column-gap: 8px; margin-bottom: 10px; color: var(--accent-text); font-size: 12px; font-weight: 700; }
-  .career-role > span { font-weight: 400; opacity: .5; }
-  .career-body h3 { margin-bottom: 7px; font-size: clamp(21px, 2vw, 26px); line-height: 1.2; }
-  .career-period { margin-bottom: 14px; font-size: 12px; color: var(--ink-soft); }
-  .career-description { font-size: 14px; color: var(--ink-soft); line-height: 1.7; margin-bottom: 18px; }
-  .career-tools { list-style: none; display: flex; flex-wrap: wrap; gap: 6px 15px; padding: 0; margin: 0; }
-  .career-tools li { color: var(--ink); font-size: 11px; font-weight: 600; }
-  .career-tools li:not(:last-child)::after { content: '·'; color: var(--accent); margin-left: 15px; }
-  .career-entry:last-child .career-body { padding-bottom: 20px; }
-
-  /* Teaching is a designed feature, not another generic resume card. */
-  .teaching-feature { position: relative; overflow: hidden; isolation: isolate; margin-top: 28px; padding: clamp(25px, 3.4vw, 44px); border-radius: 18px; background: var(--navy); color: var(--cream); }
-  .teaching-feature::before { content: ''; position: absolute; z-index: -1; width: 260px; height: 260px; border: 1px solid #faf7f30c; border-radius: 50%; right: -130px; top: -130px; box-shadow: 0 0 0 45px #faf7f304, 0 0 0 90px #faf7f303; }
-  .teaching-topline { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; padding-bottom: 22px; border-bottom: 1px solid #faf7f328; }
-  .teaching-place { font-size: 11px; font-weight: 600; letter-spacing: .02em; color: #f3e8df; }
-  .teaching-place > span { color: var(--accent-light); padding: 0 7px; }
-  .teaching-years { font-size: 13px; font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
-  .teaching-years > span { color: var(--accent-light); padding: 0 5px; }
-  .teaching-intro { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 27px; }
-  .teaching-eyebrow { font-size: 10px; letter-spacing: .13em; text-transform: uppercase; color: var(--accent-light); font-weight: 700; margin-bottom: 14px; }
-  .teaching-intro h3 { font-size: clamp(26px, 2.9vw, 39px); line-height: 1.12; letter-spacing: -.025em; color: var(--cream); margin-bottom: 0; }
-  .teaching-intro h3 em { font-style: normal; color: #e8b6a9; }
-  .teaching-mark { flex-shrink: 0; font-size: 44px; font-weight: 400; line-height: 1; color: #e8b6a9; opacity: .8; }
-  .teaching-summary { margin: 19px 0 27px; color: #e4dfd8; font-size: 13px; line-height: 1.7; max-width: 450px; }
-  .teaching-course-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid #faf7f328; }
-  .teaching-course { display: flex; align-items: center; gap: 14px; padding: 23px 10px 23px 0; border-bottom: 1px solid #faf7f328; }
-  .teaching-course:nth-child(even) { padding-left: 16px; border-left: 1px solid #faf7f328; }
-  .course-symbol { font-family: Georgia, serif; font-size: 25px; color: #e8b6a9; display: grid; place-items: center; width: 34px; flex-shrink: 0; }
-  .course-field { display: block; margin-bottom: 6px; font-size: 9px; letter-spacing: .06em; color: #b9b8bd; text-transform: uppercase; }
-  .teaching-course h4 { font-family: "Figtree", Arial, sans-serif; font-weight: 600; font-size: 13px; color: var(--cream); line-height: 1.35; margin: 0; }
-
-  @media (max-width: 1000px) {
-    .experience-section { grid-template-columns: minmax(200px, .6fr) minmax(0, 1.4fr); gap: 34px; }
-    .career-entry { grid-template-columns: 65px minmax(0,1fr); gap: 14px; }
-    .career-body { padding-left: 22px; }
-    .teaching-intro h3 { font-size: 29px; }
-    .teaching-mark { display: none; }
+  /* ---------- experience ---------- */
+  .experience-section { border-top: 1px solid var(--line); background: var(--cream); }
+  .xp-lead {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    gap: clamp(28px, 5vw, 64px);
+    padding: clamp(28px, 4vw, 44px);
+    background: var(--navy);
+    color: var(--cream);
+    border-radius: 18px;
   }
-  @media (max-width: 760px) {
-    .experience-section { grid-template-columns: 1fr; gap: 38px; }
-    .experience-heading { position: static; }
-    .experience-heading > p:not(.experience-kicker) { max-width: 440px; }
-    .experience-heading h2 { max-width: 450px; }
-    .experience-jump { margin-top: 0; }
-    .career-entry { grid-template-columns: 65px minmax(0,1fr); gap: 12px; }
-    .career-body { padding-left: 20px; padding-bottom: 32px; }
-    .career-date > span:first-child { font-size: 12px; }
-    .teaching-feature { margin-top: 20px; }
+  .xp-lead-main { min-width: 0; }
+  .xp-lead-role { margin: 0 0 12px; font-size: 13px; font-weight: 700; color: var(--accent-light); }
+  .xp-lead-role span { color: rgba(250, 247, 243, 0.6); font-weight: 600; }
+  .xp-lead h3 { margin-bottom: 14px; font-size: clamp(26px, 3vw, 34px); letter-spacing: -0.025em; color: var(--cream); }
+  .xp-lead-main > p:not(.xp-lead-role) { margin-bottom: 0; font-size: 16px; color: rgba(250, 247, 243, 0.8); }
+  .xp-lead .tags { padding-top: 22px; }
+  .xp-lead .tag { background: rgba(250, 247, 243, 0.08); border-color: rgba(250, 247, 243, 0.16); color: rgba(250, 247, 243, 0.88); }
+  .xp-lead-points { list-style: none; margin: 0; padding: 0; align-self: center; }
+  .xp-lead-points li {
+    position: relative;
+    padding: 16px 0 16px 26px;
+    border-top: 1px solid rgba(250, 247, 243, 0.16);
+    font-size: 15px;
+    color: rgba(250, 247, 243, 0.88);
   }
-  @media (max-width: 420px) {
-    .teaching-course-grid { grid-template-columns: 1fr; }
-    .teaching-course:nth-child(even) { border-left: 0; padding-left: 0; }
-    .teaching-intro h3 { font-size: 28px; }
-    .teaching-topline { align-items: flex-start; }
+  .xp-lead-points li:last-child { border-bottom: 1px solid rgba(250, 247, 243, 0.16); }
+  .xp-lead-points li::before {
+    content: "";
+    position: absolute;
+    left: 2px;
+    top: 26px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent-light);
+  }
+
+  .xp-subhead { margin: 56px 0 14px; font-size: 15px; font-weight: 700; color: var(--ink-soft); }
+  .xp-list { border-bottom: 1px solid var(--line); }
+  .xp-row {
+    display: grid;
+    grid-template-columns: 190px minmax(0, 1fr);
+    gap: 24px;
+    padding: 26px 0;
+    border-top: 1px solid var(--line);
+  }
+  .xp-date { margin: 0; font-size: 14px; font-weight: 600; font-variant-numeric: tabular-nums; color: var(--ink-soft); }
+  .xp-body { min-width: 0; }
+  .xp-role { margin: 0 0 6px; font-size: 13px; font-weight: 700; color: var(--accent-text); }
+  .xp-role span { font-weight: 400; color: var(--ink-soft); }
+  .xp-body h4 {
+    margin: 0 0 8px;
+    font-family: "Bricolage Grotesque", "Figtree", Arial, sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+  }
+  .xp-desc { margin: 0; max-width: 680px; font-size: 14.5px; line-height: 1.65; color: #4a5363; }
+  .xp-body .tags { margin-top: 0; padding-top: 14px; }
+
+  @media (max-width: 900px) {
+    .xp-lead { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 700px) {
+    .xp-lead { padding: 26px 22px; }
+    .xp-row { grid-template-columns: 1fr; gap: 6px; }
   }
 
 </style>
